@@ -9,6 +9,7 @@ import StrategySpotlight from '@/components/StrategySpotlight';
 import PredictionSection from '@/components/PredictionSection';
 import BookTabs from '@/components/BookTabs';
 import BannedBookWarning from '@/components/BannedBookWarning';
+import GamificationBanner from '@/components/GamificationBanner';
 import { fallbackDatabase } from '@/data/fallbackDatabase';
 import { useToast } from '@/hooks/use-toast';
 import { useAuth } from '@/hooks/useAuth';
@@ -121,41 +122,71 @@ const Index = () => {
         <div className="max-w-6xl mx-auto">
           {/* User Navigation Header */}
           <div className="flex justify-between items-center mb-6">
-            <div className="flex items-center gap-3">
-              <Avatar className="w-10 h-10">
-                <AvatarFallback className="bg-learning-blue text-white">
-                  {profile?.display_name?.[0]?.toUpperCase() || user?.email?.[0]?.toUpperCase() || <User className="w-5 h-5" />}
-                </AvatarFallback>
-              </Avatar>
-              <div>
-                <p className="font-semibold text-learning-blue">
-                  {profile?.display_name || user?.email?.split('@')[0] || 'Reader'}
-                </p>
-                <p className="text-sm text-foreground/60">Welcome back!</p>
+            {user ? (
+              <>
+                <div className="flex items-center gap-3">
+                  <Avatar className="w-10 h-10">
+                    <AvatarFallback className="bg-learning-blue text-white">
+                      {profile?.display_name?.[0]?.toUpperCase() || user?.email?.[0]?.toUpperCase() || <User className="w-5 h-5" />}
+                    </AvatarFallback>
+                  </Avatar>
+                  <div>
+                    <p className="font-semibold text-learning-blue">
+                      {profile?.display_name || user?.email?.split('@')[0] || 'Reader'}
+                    </p>
+                    <p className="text-sm text-foreground/60">Welcome back!</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-center gap-3">
+                  <Button
+                    onClick={() => navigate('/progress')}
+                    variant="outline"
+                    className="flex items-center gap-2 border-learning-blue text-learning-blue hover:bg-learning-blue hover:text-white"
+                  >
+                    <Trophy className="w-4 h-4" />
+                    <span className="hidden sm:inline">Points:</span>
+                    <span className="font-bold">{profile?.total_points || 0}</span>
+                  </Button>
+                  
+                  <Button
+                    onClick={handleSignOut}
+                    variant="ghost"
+                    size="sm"
+                    className="text-foreground/60 hover:text-foreground"
+                  >
+                    <LogOut className="w-4 h-4" />
+                    <span className="hidden sm:inline ml-2">Sign Out</span>
+                  </Button>
+                </div>
+              </>
+            ) : (
+              <div className="flex justify-between items-center w-full">
+                <div className="flex items-center gap-3">
+                  <Avatar className="w-10 h-10">
+                    <AvatarFallback className="bg-learning-blue text-white">
+                      <BookOpen className="w-5 h-5" />
+                    </AvatarFallback>
+                  </Avatar>
+                  <div>
+                    <p className="font-semibold text-learning-blue">Book Explorer</p>
+                    <p className="text-sm text-foreground/60">Guest Mode</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-center gap-3">
+                  <Button
+                    onClick={() => navigate('/auth')}
+                    variant="outline"
+                    className="flex items-center gap-2 border-learning-blue text-learning-blue hover:bg-learning-blue hover:text-white"
+                  >
+                    <Trophy className="w-4 h-4" />
+                    <span className="hidden sm:inline">Join to Earn Points!</span>
+                    <span className="sm:hidden">Sign In</span>
+                  </Button>
+                </div>
               </div>
-            </div>
-            
-            <div className="flex items-center gap-3">
-              <Button
-                onClick={() => navigate('/progress')}
-                variant="outline"
-                className="flex items-center gap-2 border-learning-blue text-learning-blue hover:bg-learning-blue hover:text-white"
-              >
-                <Trophy className="w-4 h-4" />
-                <span className="hidden sm:inline">Points:</span>
-                <span className="font-bold">{profile?.total_points || 0}</span>
-              </Button>
-              
-              <Button
-                onClick={handleSignOut}
-                variant="ghost"
-                size="sm"
-                className="text-foreground/60 hover:text-foreground"
-              >
-                <LogOut className="w-4 h-4" />
-                <span className="hidden sm:inline ml-2">Sign Out</span>
-              </Button>
-            </div>
+            )}
           </div>
 
           <header className="text-center mb-8 md:mb-12">
@@ -168,6 +199,9 @@ const Index = () => {
               Discover, Learn, and Grow with Every Book!
             </p>
           </header>
+
+          {/* Show gamification banner for non-authenticated users */}
+          {!user && <GamificationBanner />}
 
           <BookSearch
             bookTitle={bookTitle}
@@ -202,7 +236,7 @@ const Index = () => {
                 />
               )}
 
-              <BookTabs bookData={bookData} userPredictions={predictions} />
+              <BookTabs bookData={bookData} userPredictions={predictions} isAuthenticated={!!user} />
             </div>
           )}
         </div>

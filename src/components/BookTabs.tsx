@@ -18,9 +18,10 @@ interface BookData {
 interface BookTabsProps {
   bookData: BookData;
   userPredictions: { [key: number]: string };
+  isAuthenticated?: boolean;
 }
 
-const BookTabs = ({ bookData, userPredictions }: BookTabsProps) => {
+const BookTabs = ({ bookData, userPredictions, isAuthenticated = false }: BookTabsProps) => {
   return (
     <Tabs defaultValue="overview" className="w-full">
       <TabsList className="flex gap-2 mb-6 md:mb-8 overflow-x-auto pb-2 bg-transparent">
@@ -65,13 +66,19 @@ const BookTabs = ({ bookData, userPredictions }: BookTabsProps) => {
           {bookData.questions?.map((q, idx) => (
             <div key={idx} className="bg-card rounded-lg p-4 md:p-5 border border-border shadow-sm flex items-start justify-between gap-4">
               <p className="text-card-foreground font-medium text-sm md:text-base flex-1">{q}</p>
-              <PointsButton 
-                activityType="discussion" 
-                bookTitle={bookData.title}
-                className="bg-learning-orange hover:bg-learning-orange/90 text-white text-sm shrink-0"
-              >
-                Answer
-              </PointsButton>
+              {isAuthenticated ? (
+                <PointsButton 
+                  activityType="discussion" 
+                  bookTitle={bookData.title}
+                  className="bg-learning-orange hover:bg-learning-orange/90 text-white text-sm shrink-0"
+                >
+                  Answer
+                </PointsButton>
+              ) : (
+                <Badge variant="outline" className="text-learning-orange border-learning-orange shrink-0">
+                  Discussion
+                </Badge>
+              )}
             </div>
           ))}
         </TabsContent>
@@ -84,13 +91,19 @@ const BookTabs = ({ bookData, userPredictions }: BookTabsProps) => {
           {bookData.activities?.map((activity, idx) => (
             <div key={idx} className="bg-bg-purple rounded-lg p-4 md:p-5 border border-learning-purple/30 shadow-sm flex items-start justify-between gap-4">
               <p className="text-card-foreground font-medium text-sm md:text-base flex-1">{activity}</p>
-              <PointsButton 
-                activityType="creative" 
-                bookTitle={bookData.title}
-                className="bg-learning-purple hover:bg-learning-purple/90 text-white text-sm shrink-0"
-              >
-                Complete
-              </PointsButton>
+              {isAuthenticated ? (
+                <PointsButton 
+                  activityType="creative" 
+                  bookTitle={bookData.title}
+                  className="bg-learning-purple hover:bg-learning-purple/90 text-white text-sm shrink-0"
+                >
+                  Complete
+                </PointsButton>
+              ) : (
+                <Badge variant="outline" className="text-learning-purple border-learning-purple shrink-0">
+                  Activity
+                </Badge>
+              )}
             </div>
           ))}
         </TabsContent>

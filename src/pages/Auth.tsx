@@ -60,7 +60,9 @@ const Auth = () => {
             {isSignUp ? 'Join Book Explorer' : 'Welcome Back'}
           </CardTitle>
           <CardDescription className="text-foreground/70">
-            {isSignUp ? 'Create your reading adventure account' : 'Sign in to continue your reading journey'}
+            {isSignUp 
+              ? 'Create your reading adventure account and unlock points, badges, and reading streaks!'
+              : 'Sign in to continue earning points and tracking your reading progress'}
           </CardDescription>
         </CardHeader>
         <CardContent>
