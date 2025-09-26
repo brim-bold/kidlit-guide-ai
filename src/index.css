@@ -8,7 +8,8 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    /* Educational color palette */
+    --background: 248 100% 99%;
     --foreground: 222.2 84% 4.9%;
 
     --card: 0 0% 100%;
@@ -17,41 +18,66 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 222.2 47.4% 11.2%;
+    /* Primary educational purple */
+    --primary: 267 85% 58%;
     --primary-foreground: 210 40% 98%;
-
+    
+    /* Learning-focused secondary */
     --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary-foreground: 267 85% 58%;
 
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 267 100% 97%;
+    --accent-foreground: 267 85% 58%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --ring: 267 85% 58%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
+
+    /* Educational themed colors */
+    --learning-purple: 267 85% 58%;
+    --learning-pink: 322 85% 65%;
+    --learning-blue: 213 85% 60%;
+    --learning-green: 142 76% 47%;
+    --learning-orange: 25 95% 63%;
+    --learning-yellow: 45 93% 58%;
+    
+    /* Gradient definitions */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--learning-purple)), hsl(var(--learning-pink)));
+    --gradient-secondary: linear-gradient(135deg, hsl(var(--learning-blue)), hsl(var(--learning-purple)));
+    --gradient-success: linear-gradient(135deg, hsl(var(--learning-green)), hsl(142 76% 60%));
+    --gradient-warning: linear-gradient(135deg, hsl(var(--learning-orange)), hsl(var(--learning-yellow)));
+    --gradient-info: linear-gradient(135deg, hsl(var(--learning-blue)), hsl(213 85% 70%));
+    
+    /* Background gradients */
+    --gradient-bg: linear-gradient(135deg, hsl(248 100% 99%), hsl(267 100% 98%), hsl(322 100% 98%));
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(267 100% 99%));
+    
+    /* Interactive states */
+    --hover-scale: 1.02;
+    --active-scale: 0.98;
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    
+    /* Shadows */
+    --shadow-card: 0 4px 20px -4px hsl(267 85% 58% / 0.15);
+    --shadow-button: 0 2px 10px -2px hsl(267 85% 58% / 0.2);
+    --shadow-hover: 0 8px 30px -8px hsl(267 85% 58% / 0.25);
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 

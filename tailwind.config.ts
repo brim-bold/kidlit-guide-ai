@@ -57,6 +57,37 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        // Educational color system
+        learning: {
+          purple: "hsl(var(--learning-purple))",
+          pink: "hsl(var(--learning-pink))",
+          blue: "hsl(var(--learning-blue))",
+          green: "hsl(var(--learning-green))",
+          orange: "hsl(var(--learning-orange))",
+          yellow: "hsl(var(--learning-yellow))",
+        },
+      },
+      backgroundImage: {
+        'gradient-primary': 'var(--gradient-primary)',
+        'gradient-secondary': 'var(--gradient-secondary)',
+        'gradient-success': 'var(--gradient-success)',
+        'gradient-warning': 'var(--gradient-warning)',
+        'gradient-info': 'var(--gradient-info)',
+        'gradient-bg': 'var(--gradient-bg)',
+        'gradient-card': 'var(--gradient-card)',
+      },
+      boxShadow: {
+        'card': 'var(--shadow-card)',
+        'button': 'var(--shadow-button)',
+        'hover': 'var(--shadow-hover)',
+      },
+      scale: {
+        'hover': 'var(--hover-scale)',
+        'active': 'var(--active-scale)',
+      },
+      transitionTimingFunction: {
+        'smooth': 'var(--transition-smooth)',
+        'bounce': 'var(--transition-bounce)',
       },
       borderRadius: {
         lg: "var(--radius)",
