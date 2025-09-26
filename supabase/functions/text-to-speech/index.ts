@@ -43,9 +43,38 @@ serve(async (req) => {
     });
 
     if (!response.ok) {
-      const errorText = await response.text();
+      let errorText = '';
+      let errorMessage = '';
+      
+      try {
+        errorText = await response.text();
+        const errorData = JSON.parse(errorText);
+        
+        // Handle specific OpenAI error types
+        if (errorData.error) {
+          switch (errorData.error.code) {
+            case 'insufficient_quota':
+              errorMessage = 'OpenAI API quota exceeded. Please check your billing details and add credits to your OpenAI account.';
+              break;
+            case 'rate_limit_exceeded':
+              errorMessage = 'OpenAI API rate limit exceeded. Please try again in a moment.';
+              break;
+            case 'invalid_api_key':
+              errorMessage = 'Invalid OpenAI API key configured.';
+              break;
+            default:
+              errorMessage = errorData.error.message || `OpenAI API error: ${response.status}`;
+          }
+        } else {
+          errorMessage = `OpenAI API error: ${response.status}`;
+        }
+      } catch (parseError) {
+        errorMessage = `OpenAI API error: ${response.status}`;
+        errorText = await response.text().catch(() => 'Unable to read error response');
+      }
+      
       console.error('OpenAI TTS API error:', response.status, errorText);
-      throw new Error(`OpenAI TTS API error: ${response.status}`);
+      throw new Error(errorMessage);
     }
 
     // Get the audio buffer and convert to base64
