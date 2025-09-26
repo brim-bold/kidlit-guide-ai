@@ -57,37 +57,28 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        // Educational color system
+        // Educational color system - clean and subtle
         learning: {
-          purple: "hsl(var(--learning-purple))",
-          pink: "hsl(var(--learning-pink))",
           blue: "hsl(var(--learning-blue))",
           green: "hsl(var(--learning-green))",
           orange: "hsl(var(--learning-orange))",
-          yellow: "hsl(var(--learning-yellow))",
+          purple: "hsl(var(--learning-purple))",
+          red: "hsl(var(--learning-red))",
         },
-      },
-      backgroundImage: {
-        'gradient-primary': 'var(--gradient-primary)',
-        'gradient-secondary': 'var(--gradient-secondary)',
-        'gradient-success': 'var(--gradient-success)',
-        'gradient-warning': 'var(--gradient-warning)',
-        'gradient-info': 'var(--gradient-info)',
-        'gradient-bg': 'var(--gradient-bg)',
-        'gradient-card': 'var(--gradient-card)',
+        // Background colors
+        'bg-blue': "hsl(var(--bg-blue))",
+        'bg-green': "hsl(var(--bg-green))",
+        'bg-orange': "hsl(var(--bg-orange))",
+        'bg-purple': "hsl(var(--bg-purple))",
+        'bg-red': "hsl(var(--bg-red))",
       },
       boxShadow: {
-        'card': 'var(--shadow-card)',
-        'button': 'var(--shadow-button)',
-        'hover': 'var(--shadow-hover)',
-      },
-      scale: {
-        'hover': 'var(--hover-scale)',
-        'active': 'var(--active-scale)',
+        'sm': 'var(--shadow-sm)',
+        'md': 'var(--shadow-md)',
+        'lg': 'var(--shadow-lg)',
       },
       transitionTimingFunction: {
         'smooth': 'var(--transition-smooth)',
-        'bounce': 'var(--transition-bounce)',
       },
       borderRadius: {
         lg: "var(--radius)",

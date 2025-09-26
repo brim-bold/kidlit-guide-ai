@@ -3,6 +3,7 @@ import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
+import { Icon } from '@/components/icons/Icon';
 
 interface BookData {
   title: string;
@@ -26,45 +27,54 @@ const BookTabs = ({ bookData, userPredictions }: BookTabsProps) => {
           <TabsTrigger
             key={tab}
             value={tab}
-            className="px-4 md:px-6 py-2 md:py-3 rounded-xl font-bold whitespace-nowrap text-sm md:text-base data-[state=active]:bg-gradient-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-button data-[state=inactive]:bg-card data-[state=inactive]:text-card-foreground hover:bg-accent border-2 border-accent data-[state=active]:border-primary"
+            className="px-4 md:px-6 py-2 md:py-3 rounded-lg font-bold whitespace-nowrap text-sm md:text-base data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-sm data-[state=inactive]:bg-card data-[state=inactive]:text-card-foreground hover:bg-accent border border-border data-[state=active]:border-primary"
           >
             {tab.charAt(0).toUpperCase() + tab.slice(1)}
           </TabsTrigger>
         ))}
       </TabsList>
 
-      <div className="bg-gradient-card rounded-2xl shadow-card p-6 md:p-8 border-2 border-accent">
+      <div className="bg-card rounded-xl shadow-md p-6 md:p-8 border border-border">
         <TabsContent value="overview" className="space-y-4">
           <h3 className="text-xl md:text-3xl font-bold text-foreground mb-4">Summary</h3>
           <p className="text-card-foreground leading-relaxed text-base md:text-lg">{bookData.summary}</p>
         </TabsContent>
 
         <TabsContent value="vocabulary" className="space-y-4">
-          <h3 className="text-xl md:text-3xl font-bold text-foreground mb-4">Key Vocabulary</h3>
+          <h3 className="text-xl md:text-3xl font-bold text-foreground mb-4 flex items-center gap-2">
+            <Icon name="book" size={24} />
+            Key Vocabulary
+          </h3>
           {bookData.vocabulary?.map((word, idx) => (
-            <div key={idx} className="bg-gradient-info/20 rounded-xl p-4 md:p-5 border-2 border-learning-blue/30 shadow-button">
+            <div key={idx} className="bg-bg-blue rounded-lg p-4 md:p-5 border border-learning-blue/30 shadow-sm">
               <p className="text-lg md:text-xl font-bold text-learning-blue">{word}</p>
             </div>
           ))}
         </TabsContent>
 
         <TabsContent value="questions" className="space-y-4">
-          <div className="bg-gradient-warning/20 rounded-xl p-4 md:p-5 mb-6 border-2 border-learning-yellow/30">
-            <h4 className="font-bold text-learning-orange mb-3 text-base md:text-lg">Question Guide:</h4>
-            <p className="text-sm md:text-base text-card-foreground mb-2">🔵 <strong>Blue</strong> = Right in text</p>
-            <p className="text-sm md:text-base text-card-foreground">🟢 <strong>Green</strong> = Think deeper</p>
+          <div className="bg-bg-orange rounded-lg p-4 md:p-5 mb-6 border border-learning-orange/30">
+            <h4 className="font-bold text-learning-orange mb-3 text-base md:text-lg flex items-center gap-2">
+              <Icon name="lightbulb" size={18} />
+              Question Guide:
+            </h4>
+            <p className="text-sm md:text-base text-card-foreground mb-2"><Icon name="circle" size={12} className="text-blue-500 inline mr-1" /> <strong>Blue</strong> = Right in text</p>
+            <p className="text-sm md:text-base text-card-foreground"><Icon name="circle" size={12} className="text-green-500 inline mr-1" /> <strong>Green</strong> = Think deeper</p>
           </div>
           {bookData.questions?.map((q, idx) => (
-            <div key={idx} className="bg-card rounded-xl p-4 md:p-5 border-2 border-learning-yellow/30 shadow-button">
+            <div key={idx} className="bg-card rounded-lg p-4 md:p-5 border border-border shadow-sm">
               <p className="text-card-foreground font-medium text-sm md:text-base">{q}</p>
             </div>
           ))}
         </TabsContent>
 
         <TabsContent value="activities" className="space-y-4">
-          <h3 className="text-xl md:text-3xl font-bold text-foreground mb-4">Fun Activities</h3>
+          <h3 className="text-xl md:text-3xl font-bold text-foreground mb-4 flex items-center gap-2">
+            <Icon name="palette" size={24} />
+            Fun Activities
+          </h3>
           {bookData.activities?.map((activity, idx) => (
-            <div key={idx} className="bg-gradient-warning/20 rounded-xl p-4 md:p-5 border-2 border-learning-pink/30 shadow-button">
+            <div key={idx} className="bg-bg-purple rounded-lg p-4 md:p-5 border border-learning-purple/30 shadow-sm">
               <p className="text-card-foreground font-medium text-sm md:text-base">{activity}</p>
             </div>
           ))}

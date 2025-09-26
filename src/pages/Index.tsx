@@ -9,6 +9,7 @@ import BookTabs from '@/components/BookTabs';
 import BannedBookWarning from '@/components/BannedBookWarning';
 import { fallbackDatabase } from '@/data/fallbackDatabase';
 import { useToast } from '@/hooks/use-toast';
+import { Icon } from '@/components/icons/Icon';
 
 const Index = () => {
   const [showLoading, setShowLoading] = useState(true);
@@ -97,14 +98,17 @@ const Index = () => {
         <BannedBookWarning onClose={() => setShowBannedWarning(false)} />
       )}
 
-      <div className="min-h-screen bg-gradient-bg p-4 md:p-8">
+      <div className="min-h-screen bg-background p-4 md:p-8">
         <div className="max-w-6xl mx-auto">
           <header className="text-center mb-8 md:mb-12">
             <BookOpen className="w-14 h-14 md:w-16 md:h-16 mx-auto mb-4 text-primary drop-shadow-lg" aria-hidden="true" />
-            <h1 className="text-3xl md:text-5xl font-bold bg-gradient-primary bg-clip-text text-transparent mb-2">
+            <h1 className="text-3xl md:text-5xl font-bold text-primary mb-2">
               Book Explorer
             </h1>
-            <p className="text-base md:text-lg text-muted-foreground">Discover, Learn, and Grow with Every Book! 📚</p>
+            <p className="text-base md:text-lg text-muted-foreground flex items-center justify-center gap-2">
+              <Icon name="sparkles" size={18} />
+              Discover, Learn, and Grow with Every Book!
+            </p>
           </header>
 
           <BookSearch
