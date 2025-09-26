@@ -96,32 +96,49 @@ const BookTabs = ({ bookData, userPredictions, isAuthenticated = false }: BookTa
         </TabsContent>
 
         <TabsContent value="questions" className="space-y-4">
-          <div className="bg-bg-orange rounded-lg p-4 md:p-5 mb-6 border border-learning-orange/30">
-            <h4 className="font-bold text-learning-orange mb-3 text-base md:text-lg flex items-center gap-2">
+          <div className="bg-bg-yellow rounded-lg p-4 md:p-5 mb-6 border border-character-yellow/30 shadow-soft">
+            <h4 className="font-bold text-character-yellow mb-3 text-base md:text-lg flex items-center gap-2">
               <Icon name="lightbulb" size={18} />
               Question Guide:
             </h4>
-            <p className="text-sm md:text-base text-card-foreground mb-2"><Icon name="circle" size={12} className="text-blue-500 inline mr-1" /> <strong>Blue</strong> = Right in text</p>
-            <p className="text-sm md:text-base text-card-foreground"><Icon name="circle" size={12} className="text-green-500 inline mr-1" /> <strong>Green</strong> = Think deeper</p>
+            <p className="text-sm md:text-base text-foreground mb-2">
+              <Icon name="circle" size={12} className="text-character-blue inline mr-2" /> 
+              <strong className="text-character-blue">Blue</strong> = Right in text
+            </p>
+            <p className="text-sm md:text-base text-foreground">
+              <Icon name="circle" size={12} className="text-character-green inline mr-2" /> 
+              <strong className="text-character-green">Green</strong> = Think deeper
+            </p>
           </div>
-          {bookData.questions?.map((q, idx) => (
-            <div key={idx} className="bg-card rounded-lg p-4 md:p-5 border border-border shadow-sm flex items-start justify-between gap-4">
-              <p className="text-card-foreground font-medium text-sm md:text-base flex-1">{q}</p>
-              {isAuthenticated ? (
-                <PointsButton 
-                  activityType="discussion" 
-                  bookTitle={bookData.title}
-                  className="bg-learning-orange hover:bg-learning-orange/90 text-white text-sm shrink-0"
-                >
-                  Answer
-                </PointsButton>
-              ) : (
-                <Badge variant="outline" className="text-learning-orange border-learning-orange shrink-0">
-                  Discussion
-                </Badge>
-              )}
-            </div>
-          ))}
+          {bookData.questions?.map((q, idx) => {
+            // Alternate between blue (text-based) and green (inference) questions
+            const isTextBased = idx % 2 === 0;
+            const markerColor = isTextBased ? 'character-blue' : 'character-green';
+            const bgColor = isTextBased ? 'bg-blue' : 'bg-green';
+            const borderColor = isTextBased ? 'character-blue/30' : 'character-green/30';
+            
+            return (
+              <div key={idx} className={`bg-${bgColor} rounded-lg p-4 md:p-5 border border-${borderColor} shadow-soft flex items-start gap-4`}>
+                <div className="flex items-center gap-3 flex-1">
+                  <Icon name="circle" size={16} className={`text-${markerColor} shrink-0 mt-1`} />
+                  <p className="text-foreground font-medium text-sm md:text-base">{q}</p>
+                </div>
+                {isAuthenticated ? (
+                  <PointsButton 
+                    activityType="discussion" 
+                    bookTitle={bookData.title}
+                    className="shrink-0"
+                  >
+                    Answer
+                  </PointsButton>
+                ) : (
+                  <Badge variant="outline" className={`text-${markerColor} border-${markerColor} shrink-0`}>
+                    Discussion
+                  </Badge>
+                )}
+              </div>
+            );
+          })}
         </TabsContent>
 
         <TabsContent value="activities" className="space-y-4">
