@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import Index from "./pages/Index";
+import SearchPage from "./pages/SearchPage";
 import Auth from "./pages/Auth";
 import ParentDashboard from "./pages/ParentDashboard";
 import ProgressDashboard from "@/components/ProgressDashboard";
@@ -32,7 +33,9 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/auth" element={<Auth />} />
-          <Route path="/" element={<Index />} />
+          <Route path="/search" element={<SearchPage />} />
+          <Route path="/results" element={<Index />} />
+          <Route path="/" element={<SearchPage />} />
           <Route path="/progress" element={<ProtectedRoute><ProgressDashboard /></ProtectedRoute>} />
           <Route path="/parent-dashboard" element={<ProtectedRoute><ParentDashboard /></ProtectedRoute>} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
