@@ -25,8 +25,7 @@ const PointsButton = ({ activityType, children, bookTitle, className = '' }: Poi
   return (
     <Button
       onClick={handleClick}
-      className={`group relative overflow-hidden transition-all duration-300 hover:scale-105 ${className}`}
-      variant="default"
+      className={`btn-cheerful group ${className}`}
     >
       <span className="flex items-center gap-2">
         <Sparkles className="w-4 h-4 group-hover:animate-spin" />

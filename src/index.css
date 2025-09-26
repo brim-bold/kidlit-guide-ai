@@ -2,81 +2,81 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Summer Sunset Design System - Beautiful, warm, and educational
-All colors MUST be HSL and based on the uploaded color palette.
+/* Playful Character-Driven Design System
+Inspired by cute character apps - bright, friendly, and educational
+All colors MUST be HSL and optimized for character-based interactions.
 */
 
 @layer base {
   :root {
-    /* Summer Sunset Color Palette - Light Mode */
-    --background: 0 0% 98%; /* Very light background */
-    --foreground: 0 0% 9%; /* Nearly black for accessibility */
+    /* Playful Character Color Palette - Light Mode */
+    --background: 0 0% 99%; /* Clean white background */
+    --foreground: 0 0% 8%; /* Dark text for accessibility */
 
-    --card: 48 56% 93%; /* Light cream #EFEFD0 variation */
-    --card-foreground: 0 0% 9%; /* Nearly black text on cards */
+    --card: 0 0% 97%; /* Soft white cards with subtle warmth */
+    --card-foreground: 0 0% 8%; /* Dark text on cards */
 
     --popover: 0 0% 100%; /* Pure white for popovers */
-    --popover-foreground: 208 100% 27%;
+    --popover-foreground: 0 0% 8%;
 
-    /* Primary - Deep ocean blue for educational feel */
-    --primary: 208 100% 27%; /* Deep blue #004E89 */
+    /* Primary - Cheerful blue */
+    --primary: 216 98% 52%; /* Bright friendly blue */
     --primary-foreground: 0 0% 100%;
     
-    /* Secondary - Medium blue for secondary actions */
-    --secondary: 205 62% 36%; /* Medium blue #1A659E */
-    --secondary-foreground: 0 0% 100%;
+    /* Secondary - Soft lavender */
+    --secondary: 250 65% 75%; /* Gentle purple */
+    --secondary-foreground: 0 0% 8%;
 
-    --muted: 48 56% 90%; /* Light cream for muted elements */
-    --muted-foreground: 208 50% 40%;
+    --muted: 210 20% 95%; /* Very light gray */
+    --muted-foreground: 210 10% 40%;
 
-    /* Accent - Vibrant coral for highlights */
-    --accent: 21 96% 60%; /* Coral #FF6E35 */
+    /* Accent - Vibrant coral pink */
+    --accent: 340 82% 62%; /* Playful pink */
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 48 30% 82%; /* Subtle cream border */
-    --input: 48 30% 85%;
-    --ring: 208 100% 27%; /* Deep blue focus ring */
+    --border: 210 20% 90%; /* Soft gray border */
+    --input: 210 20% 92%;
+    --ring: 216 98% 52%; /* Blue focus ring */
 
-    --radius: 0.75rem;
+    --radius: 1.5rem; /* More rounded for playful feel */
 
-    /* Summer Sunset Learning Colors */
-    --learning-blue: 208 100% 27%; /* Deep blue #004E89 */
-    --learning-secondary: 205 62% 36%; /* Medium blue #1A659E */
-    --learning-coral: 21 96% 60%; /* Coral #FF6E35 */
-    --learning-peach: 25 64% 78%; /* Peach #F7C59F */
-    --learning-cream: 48 56% 88%; /* Cream #EFEFD0 */
+    /* Character Theme Colors - Bright & Playful */
+    --character-yellow: 48 100% 67%; /* Cheerful yellow like happy face */
+    --character-orange: 25 95% 53%; /* Excited orange */
+    --character-blue: 216 98% 52%; /* Calm blue like sleepy face */
+    --character-pink: 340 82% 62%; /* Surprised pink */
+    --character-green: 142 69% 58%; /* Playful green like wink face */
+    --character-purple: 258 90% 68%; /* Magic purple like flower */
+    --character-lime: 84 81% 44%; /* Lucky green like clover */
     
-    /* Semantic colors using sunset palette */
-    --learning-green: 142 71% 45%; /* Keep green for success */
-    --learning-orange: 21 96% 60%; /* Use coral for orange */
-    --learning-purple: 258 90% 66%; /* Complementary purple */
-    --learning-red: 0 84% 60%; /* Error red */
+    /* Character background variations - very light tints */
+    --bg-yellow: 48 100% 95%; /* Very light yellow */
+    --bg-orange: 25 95% 95%; /* Very light orange */
+    --bg-blue: 216 98% 97%; /* Very light blue */
+    --bg-pink: 340 82% 97%; /* Very light pink */
+    --bg-green: 142 69% 95%; /* Very light green */
+    --bg-purple: 258 90% 97%; /* Very light purple */
+    --bg-lime: 84 81% 95%; /* Very light lime */
     
-    /* Light background variations */
-    --bg-cream: 48 56% 96%; /* Very light cream */
-    --bg-peach: 25 64% 95%; /* Very light peach */
-    --bg-blue: 208 100% 97%; /* Very light blue */
-    --bg-coral: 21 96% 96%; /* Very light coral */
-    --bg-green: 142 71% 96%; /* Very light green */
-    --bg-orange: 21 96% 96%; /* Very light orange */
-    --bg-purple: 258 90% 96%; /* Very light purple */
+    /* Playful character gradients */
+    --gradient-cheerful: linear-gradient(135deg, hsl(48, 100%, 67%), hsl(25, 95%, 53%));
+    --gradient-calm: linear-gradient(135deg, hsl(216, 98%, 52%), hsl(250, 65%, 75%));
+    --gradient-magical: linear-gradient(135deg, hsl(340, 82%, 62%), hsl(258, 90%, 68%));
+    --gradient-nature: linear-gradient(135deg, hsl(142, 69%, 58%), hsl(84, 81%, 44%));
     
-    /* Sunset-inspired gradients */
-    --gradient-sunset: linear-gradient(135deg, hsl(21, 96%, 60%), hsl(25, 64%, 78%));
-    --gradient-ocean: linear-gradient(135deg, hsl(208, 100%, 27%), hsl(205, 62%, 36%));
-    --gradient-warm: linear-gradient(135deg, hsl(25, 64%, 78%), hsl(48, 56%, 88%));
+    /* Soft character shadows */
+    --shadow-cheerful: 0 8px 32px -8px hsl(48, 100%, 67%, 0.25);
+    --shadow-calm: 0 8px 32px -8px hsl(216, 98%, 52%, 0.2);
+    --shadow-magical: 0 8px 32px -8px hsl(340, 82%, 62%, 0.25);
+    --shadow-soft: 0 4px 20px -2px hsl(210, 20%, 70%, 0.15);
     
-    /* Beautiful shadows with sunset colors */
-    --shadow-sunset: 0 10px 30px -5px hsl(21, 96%, 60%, 0.2);
-    --shadow-ocean: 0 10px 30px -5px hsl(208, 100%, 27%, 0.15);
-    --shadow-soft: 0 4px 20px -2px hsl(48, 30%, 70%, 0.3);
-    
-    /* Smooth transitions */
+    /* Playful transitions */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-bounce: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --transition-wiggle: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
     /* Sidebar colors */
     --sidebar-background: 48 56% 98%;
@@ -136,55 +136,67 @@ All colors MUST be HSL and based on the uploaded color palette.
 }
 
 @layer components {
-  /* Sunset-themed components */
-  .btn-sunset {
-    @apply bg-gradient-to-r from-learning-coral to-learning-peach text-white shadow-sunset hover:shadow-lg;
+  /* Playful character-themed components */
+  .btn-cheerful {
+    @apply bg-gradient-cheerful text-white shadow-cheerful hover:shadow-lg rounded-2xl px-6 py-3;
+    @apply transition-all duration-300 hover:scale-105 hover:rotate-1;
+  }
+  
+  .btn-magical {
+    @apply bg-gradient-magical text-white shadow-magical rounded-2xl px-6 py-3;
+    @apply transition-all duration-300 hover:scale-105 hover:-rotate-1;
+  }
+  
+  .btn-calm {
+    @apply bg-gradient-calm text-white shadow-calm rounded-2xl px-6 py-3;
     @apply transition-all duration-300 hover:scale-105;
   }
   
-  .btn-ocean {
-    @apply bg-gradient-to-r from-learning-blue to-learning-secondary text-white shadow-ocean;
-    @apply transition-all duration-300 hover:scale-105;
+  .card-character {
+    @apply bg-card/80 backdrop-blur-sm border-2 border-transparent rounded-3xl shadow-soft p-6;
+    @apply transition-all duration-300 hover:shadow-magical hover:border-character-pink/20 hover:scale-105;
   }
   
-  .card-sunset {
-    @apply bg-gradient-to-br from-bg-cream to-bg-peach border border-learning-peach/30 shadow-soft;
-    @apply transition-all duration-300 hover:shadow-sunset;
+  .speech-bubble {
+    @apply bg-bg-yellow border-2 border-character-yellow rounded-2xl px-4 py-3;
+    @apply relative font-medium text-foreground shadow-soft;
   }
   
-  .text-gradient-sunset {
-    @apply bg-gradient-to-r from-learning-coral to-learning-peach bg-clip-text text-transparent font-bold;
+  .speech-bubble::after {
+    @apply absolute -bottom-2 left-6 w-4 h-4 bg-bg-yellow border-r-2 border-b-2 border-character-yellow;
+    content: '';
+    transform: rotate(45deg);
   }
   
-  .text-gradient-ocean {
-    @apply bg-gradient-to-r from-learning-blue to-learning-secondary bg-clip-text text-transparent font-bold;
+  .character-float {
+    @apply animate-bounce-gentle;
   }
 }
 
 @layer utilities {
-  /* Animation utilities with sunset theme */
-  .animate-fade-in {
-    animation: fade-in 0.5s ease-out forwards;
+  /* Character animation utilities */
+  .animate-wiggle {
+    animation: wiggle 0.5s ease-in-out;
   }
   
-  .animate-scale-in {
-    animation: scale-in 0.3s ease-out forwards;
+  .animate-character-hover {
+    @apply transition-all duration-300 hover:scale-110 hover:rotate-12;
   }
   
-  .animate-slide-up {
-    animation: slide-up 0.4s ease-out forwards;
+  .animate-float-up {
+    animation: slide-up 0.6s ease-out forwards;
   }
   
-  .hover-lift {
-    @apply transition-all duration-300 hover:scale-105 hover:shadow-sunset;
+  .hover-character {
+    @apply transition-all duration-300 hover:scale-105 hover:shadow-cheerful hover:-rotate-1;
   }
   
-  .story-link {
-    @apply relative inline-block after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-learning-coral after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left;
+  .character-glow {
+    animation: pulse-glow 3s ease-in-out infinite;
   }
   
-  .pulse-glow {
-    animation: pulse-glow 2s ease-in-out infinite;
+  .playful-border {
+    @apply border-2 border-dashed border-character-yellow/50 rounded-2xl;
   }
 }
 
@@ -223,9 +235,9 @@ All colors MUST be HSL and based on the uploaded color palette.
 
 @keyframes pulse-glow {
   0%, 100% {
-    box-shadow: 0 0 5px hsl(var(--learning-coral) / 0.3);
+    box-shadow: 0 0 8px hsl(var(--character-yellow) / 0.3);
   }
   50% {
-    box-shadow: 0 0 20px hsl(var(--learning-coral) / 0.6);
+    box-shadow: 0 0 24px hsl(var(--character-yellow) / 0.6);
   }
 }

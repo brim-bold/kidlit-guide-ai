@@ -20,6 +20,7 @@ import { useAuth } from '@/hooks/useAuth';
 import { useGameification } from '@/hooks/useGameification';
 import { Icon } from '@/components/icons/Icon';
 import { useNavigate } from 'react-router-dom';
+import CharacterAvatar, { CharacterType } from '@/components/CharacterAvatar';
 
 const Index = () => {
   const [showLoading, setShowLoading] = useState(true);
@@ -184,13 +185,11 @@ const Index = () => {
             {user ? (
               <>
                 <div className="flex items-center gap-3">
-                  <Avatar className="w-10 h-10">
-                    <AvatarFallback className="bg-learning-blue text-white">
-                      {profile?.display_name?.[0]?.toUpperCase() || user?.email?.[0]?.toUpperCase() || <User className="w-5 h-5" />}
-                    </AvatarFallback>
-                  </Avatar>
+                  <div className="bg-gradient-cheerful p-2 rounded-full shadow-cheerful">
+                    <CharacterAvatar character="cheerful" size="sm" animate={false} />
+                  </div>
                   <div>
-                    <p className="font-semibold text-learning-blue">
+                    <p className="font-semibold text-primary">
                       {profile?.display_name || user?.email?.split('@')[0] || 'Reader'}
                     </p>
                     <p className="text-sm text-foreground/60">Welcome back!</p>
@@ -201,7 +200,7 @@ const Index = () => {
               <DyslexiaToggle />
               <Button
                 onClick={() => navigate('/progress')}
-                className="btn-sunset hover-lift flex items-center gap-2"
+                className="bg-gradient-magical text-white shadow-magical hover:scale-105 transition-all duration-300 flex items-center gap-2 rounded-2xl px-6"
               >
                 <Trophy className="w-4 h-4" />
                 <span className="hidden sm:inline">Points:</span>
@@ -212,7 +211,7 @@ const Index = () => {
                 onClick={handleSignOut}
                 variant="ghost"
                 size="sm"
-                className="text-foreground/60 hover:text-foreground transition-smooth"
+                className="text-foreground/60 hover:text-foreground transition-smooth rounded-2xl"
               >
                 <LogOut className="w-4 h-4" />
                 <span className="hidden sm:inline ml-2">Sign Out</span>
@@ -222,13 +221,11 @@ const Index = () => {
             ) : (
               <div className="flex justify-between items-center w-full">
                 <div className="flex items-center gap-3">
-                  <Avatar className="w-10 h-10">
-                    <AvatarFallback className="bg-learning-blue text-white">
-                      <BookOpen className="w-5 h-5" />
-                    </AvatarFallback>
-                  </Avatar>
+                  <div className="bg-gradient-nature p-2 rounded-full shadow-soft">
+                    <CharacterAvatar character="star" size="sm" animate={false} />
+                  </div>
                   <div>
-                    <p className="font-semibold text-learning-blue">Book Explorer</p>
+                    <p className="font-semibold text-primary">Book Explorer</p>
                     <p className="text-sm text-foreground/60">Guest Mode</p>
                   </div>
                 </div>
@@ -237,7 +234,7 @@ const Index = () => {
                   <DyslexiaToggle />
                   <Button
                     onClick={() => navigate('/auth')}
-                    className="btn-sunset hover-lift flex items-center gap-2"
+                    className="bg-gradient-cheerful text-white shadow-cheerful hover:scale-105 transition-all duration-300 flex items-center gap-2 rounded-2xl px-6"
                   >
                     <Trophy className="w-4 h-4" />
                     <span className="hidden sm:inline">Join to Earn Points!</span>
@@ -249,17 +246,43 @@ const Index = () => {
           </div>
 
           <header className="text-center mb-8 md:mb-12 animate-fade-in">
-            <div className="relative">
-              <BookOpen className="w-14 h-14 md:w-16 md:h-16 mx-auto mb-4 text-primary drop-shadow-lg hover-lift" aria-hidden="true" />
-              <div className="absolute inset-0 bg-gradient-sunset opacity-20 blur-xl rounded-full"></div>
+            <div className="relative mb-6">
+              {/* Character friends around the logo */}
+              <div className="flex justify-center items-center gap-4 mb-4">
+                <CharacterAvatar character="cheerful" size="lg" className="animate-bounce" />
+                <div className="bg-gradient-cheerful p-4 rounded-3xl shadow-cheerful">
+                  <BookOpen className="w-12 h-12 md:w-16 md:h-16 text-white drop-shadow-lg" aria-hidden="true" />
+                </div>
+                <CharacterAvatar character="excited" size="lg" className="animate-bounce delay-75" />
+              </div>
+              
+              {/* Floating characters */}
+              <div className="absolute -top-4 left-1/4 animate-pulse">
+                <CharacterAvatar character="star" size="sm" />
+              </div>
+              <div className="absolute -top-2 right-1/4 animate-pulse delay-150">
+                <CharacterAvatar character="flower" size="sm" />
+              </div>
             </div>
-            <h1 className="text-3xl md:text-5xl font-bold mb-2 text-gradient-ocean animate-scale-in">
+            
+            <h1 className="text-4xl md:text-6xl font-bold mb-4 bg-gradient-cheerful bg-clip-text text-transparent animate-scale-in">
               Book Explorer
             </h1>
-            <p className="text-base md:text-lg text-muted-foreground flex items-center justify-center gap-2 animate-slide-up">
-              <Icon name="sparkles" size={18} />
+            <p className="text-lg md:text-xl text-foreground/80 flex items-center justify-center gap-2 animate-slide-up">
+              <Icon name="sparkles" size={20} />
               Discover, Learn, and Grow with Every Book!
+              <Icon name="heart" size={20} />
             </p>
+            
+            {/* Character speech bubbles */}
+            <div className="flex justify-center mt-6 gap-8">
+              <div className="relative">
+                <div className="bg-bg-yellow border-2 border-character-yellow rounded-2xl px-4 py-2 text-sm font-medium text-foreground shadow-soft">
+                  Let's read together! 📚
+                </div>
+                <div className="absolute -bottom-2 left-6 w-4 h-4 bg-bg-yellow border-r-2 border-b-2 border-character-yellow rotate-45"></div>
+              </div>
+            </div>
           </header>
 
           {/* Show gamification banner for non-authenticated users */}
