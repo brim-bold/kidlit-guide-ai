@@ -51,15 +51,15 @@ const Auth = () => {
     <div className="min-h-screen bg-gradient-to-br from-bg-cream via-bg-peach to-bg-blue flex items-center justify-center p-4">
       <Card className="w-full max-w-md bg-white/95 backdrop-blur-sm border-learning-blue/20 shadow-xl">
         <CardHeader className="text-center space-y-2">
-          <div className="flex justify-center">
-            <div className="p-3 bg-learning-blue/10 rounded-full">
-              <BookOpen className="w-8 h-8 text-learning-blue" />
+          <div className="flex items-center gap-2 hover-lift transition-smooth">
+            <div className="p-3 bg-gradient-sunset rounded-full shadow-sunset animate-pulse-glow">
+              <BookOpen className="w-8 h-8 text-white" />
             </div>
           </div>
-          <CardTitle className="text-2xl text-learning-blue">
+          <CardTitle className="text-2xl text-gradient-ocean animate-scale-in">
             {isSignUp ? 'Join Book Explorer' : 'Welcome Back'}
           </CardTitle>
-          <CardDescription className="text-foreground/70">
+          <CardDescription className="text-foreground/70 animate-fade-in">
             {isSignUp 
               ? 'Create your reading adventure account and unlock points, badges, and reading streaks!'
               : 'Sign in to continue earning points and tracking your reading progress'}
@@ -112,7 +112,7 @@ const Auth = () => {
             )}
             <Button
               type="submit"
-              className="w-full bg-learning-blue hover:bg-learning-blue/90 text-white"
+              className="w-full btn-sunset hover-lift font-semibold animate-scale-in"
               disabled={loading}
             >
               {loading ? 'Please wait...' : (isSignUp ? 'Create Account' : 'Sign In')}

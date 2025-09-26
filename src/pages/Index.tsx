@@ -196,27 +196,26 @@ const Index = () => {
                   </div>
                 </div>
                 
-                <div className="flex items-center gap-3">
-                  <Button
-                    onClick={() => navigate('/progress')}
-                    variant="outline"
-                    className="flex items-center gap-2 border-learning-blue text-learning-blue hover:bg-learning-blue hover:text-white"
-                  >
-                    <Trophy className="w-4 h-4" />
-                    <span className="hidden sm:inline">Points:</span>
-                    <span className="font-bold">{profile?.total_points || 0}</span>
-                  </Button>
-                  
-                  <Button
-                    onClick={handleSignOut}
-                    variant="ghost"
-                    size="sm"
-                    className="text-foreground/60 hover:text-foreground"
-                  >
-                    <LogOut className="w-4 h-4" />
-                    <span className="hidden sm:inline ml-2">Sign Out</span>
-                  </Button>
-                </div>
+            <div className="flex items-center gap-3">
+              <Button
+                onClick={() => navigate('/progress')}
+                className="btn-sunset hover-lift flex items-center gap-2"
+              >
+                <Trophy className="w-4 h-4" />
+                <span className="hidden sm:inline">Points:</span>
+                <span className="font-bold">{profile?.total_points || 0}</span>
+              </Button>
+              
+              <Button
+                onClick={handleSignOut}
+                variant="ghost"
+                size="sm"
+                className="text-foreground/60 hover:text-foreground transition-smooth"
+              >
+                <LogOut className="w-4 h-4" />
+                <span className="hidden sm:inline ml-2">Sign Out</span>
+              </Button>
+            </div>
               </>
             ) : (
               <div className="flex justify-between items-center w-full">
@@ -235,8 +234,7 @@ const Index = () => {
                 <div className="flex items-center gap-3">
                   <Button
                     onClick={() => navigate('/auth')}
-                    variant="outline"
-                    className="flex items-center gap-2 border-learning-blue text-learning-blue hover:bg-learning-blue hover:text-white"
+                    className="btn-sunset hover-lift flex items-center gap-2"
                   >
                     <Trophy className="w-4 h-4" />
                     <span className="hidden sm:inline">Join to Earn Points!</span>
@@ -247,12 +245,15 @@ const Index = () => {
             )}
           </div>
 
-          <header className="text-center mb-8 md:mb-12">
-            <BookOpen className="w-14 h-14 md:w-16 md:h-16 mx-auto mb-4 text-primary drop-shadow-lg" aria-hidden="true" />
-            <h1 className="text-3xl md:text-5xl font-bold text-primary mb-2">
+          <header className="text-center mb-8 md:mb-12 animate-fade-in">
+            <div className="relative">
+              <BookOpen className="w-14 h-14 md:w-16 md:h-16 mx-auto mb-4 text-primary drop-shadow-lg hover-lift" aria-hidden="true" />
+              <div className="absolute inset-0 bg-gradient-sunset opacity-20 blur-xl rounded-full"></div>
+            </div>
+            <h1 className="text-3xl md:text-5xl font-bold mb-2 text-gradient-ocean animate-scale-in">
               Book Explorer
             </h1>
-            <p className="text-base md:text-lg text-muted-foreground flex items-center justify-center gap-2">
+            <p className="text-base md:text-lg text-muted-foreground flex items-center justify-center gap-2 animate-slide-up">
               <Icon name="sparkles" size={18} />
               Discover, Learn, and Grow with Every Book!
             </p>

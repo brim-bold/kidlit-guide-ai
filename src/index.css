@@ -2,97 +2,121 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
+/* Summer Sunset Design System - Beautiful, warm, and educational
+All colors MUST be HSL and based on the uploaded color palette.
 */
 
 @layer base {
   :root {
-    /* Clean educational color palette */
-    --background: 251 100% 99%;
-    --foreground: 222.2 47.4% 11.2%;
+    /* Summer Sunset Color Palette - Light Mode */
+    --background: 0 0% 98%; /* Very light background */
+    --foreground: 208 100% 27%; /* Deep blue #004E89 for text */
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 47.4% 11.2%;
+    --card: 48 56% 93%; /* Light cream #EFEFD0 variation */
+    --card-foreground: 208 100% 27%; /* Deep blue text on cards */
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 47.4% 11.2%;
+    --popover: 0 0% 100%; /* Pure white for popovers */
+    --popover-foreground: 208 100% 27%;
 
-    /* Primary educational blue */
-    --primary: 213 85% 60%;
+    /* Primary - Deep ocean blue for educational feel */
+    --primary: 208 100% 27%; /* Deep blue #004E89 */
     --primary-foreground: 0 0% 100%;
     
-    /* Clean secondary */
-    --secondary: 210 40% 96%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Secondary - Medium blue for secondary actions */
+    --secondary: 205 62% 36%; /* Medium blue #1A659E */
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 210 40% 96%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 48 56% 90%; /* Light cream for muted elements */
+    --muted-foreground: 208 50% 40%;
 
-    --accent: 213 100% 97%;
-    --accent-foreground: 213 85% 60%;
+    /* Accent - Vibrant coral for highlights */
+    --accent: 21 96% 60%; /* Coral #FF6E35 */
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 72% 51%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 213 85% 60%;
+    --border: 48 30% 82%; /* Subtle cream border */
+    --input: 48 30% 85%;
+    --ring: 208 100% 27%; /* Deep blue focus ring */
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
 
-    /* Educational themed colors - more subtle */
-    --learning-blue: 213 85% 60%;
-    --learning-green: 142 71% 45%;
-    --learning-orange: 25 85% 55%;
-    --learning-purple: 267 75% 65%;
-    --learning-red: 0 72% 51%;
+    /* Summer Sunset Learning Colors */
+    --learning-blue: 208 100% 27%; /* Deep blue #004E89 */
+    --learning-secondary: 205 62% 36%; /* Medium blue #1A659E */
+    --learning-coral: 21 96% 60%; /* Coral #FF6E35 */
+    --learning-peach: 25 64% 78%; /* Peach #F7C59F */
+    --learning-cream: 48 56% 88%; /* Cream #EFEFD0 */
     
-    /* Minimal backgrounds */
-    --bg-blue: 213 100% 97%;
-    --bg-green: 142 100% 97%;
-    --bg-orange: 25 100% 97%;
-    --bg-purple: 267 100% 97%;
-    --bg-red: 0 100% 97%;
+    /* Semantic colors using sunset palette */
+    --learning-green: 142 71% 45%; /* Keep green for success */
+    --learning-orange: 21 96% 60%; /* Use coral for orange */
+    --learning-purple: 258 90% 66%; /* Complementary purple */
+    --learning-red: 0 84% 60%; /* Error red */
     
-    /* Interactive states */
-    --transition-smooth: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Light background variations */
+    --bg-cream: 48 56% 96%; /* Very light cream */
+    --bg-peach: 25 64% 95%; /* Very light peach */
+    --bg-blue: 208 100% 97%; /* Very light blue */
+    --bg-coral: 21 96% 96%; /* Very light coral */
+    --bg-green: 142 71% 96%; /* Very light green */
+    --bg-orange: 21 96% 96%; /* Very light orange */
+    --bg-purple: 258 90% 96%; /* Very light purple */
     
-    /* Clean shadows */
-    --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1);
-    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+    /* Sunset-inspired gradients */
+    --gradient-sunset: linear-gradient(135deg, hsl(21, 96%, 60%), hsl(25, 64%, 78%));
+    --gradient-ocean: linear-gradient(135deg, hsl(208, 100%, 27%), hsl(205, 62%, 36%));
+    --gradient-warm: linear-gradient(135deg, hsl(25, 64%, 78%), hsl(48, 56%, 88%));
+    
+    /* Beautiful shadows with sunset colors */
+    --shadow-sunset: 0 10px 30px -5px hsl(21, 96%, 60%, 0.2);
+    --shadow-ocean: 0 10px 30px -5px hsl(208, 100%, 27%, 0.15);
+    --shadow-soft: 0 4px 20px -2px hsl(48, 30%, 70%, 0.3);
+    
+    /* Smooth transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
+    /* Sidebar colors */
+    --sidebar-background: 48 56% 98%;
+    --sidebar-foreground: 208 100% 27%;
+    --sidebar-primary: 208 100% 27%;
     --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-accent: 48 56% 93%;
+    --sidebar-accent-foreground: 208 100% 27%;
+    --sidebar-border: 48 30% 88%;
+    --sidebar-ring: 208 100% 27%;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 213 85% 60%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 213 85% 60%;
+    --background: 208 100% 6%; /* Very dark blue */
+    --foreground: 48 56% 95%; /* Light cream text */
+    
+    --card: 208 100% 8%; /* Dark blue card */
+    --card-foreground: 48 56% 90%;
+    
+    --popover: 208 100% 6%;
+    --popover-foreground: 48 56% 95%;
+    
+    --primary: 21 96% 60%; /* Coral primary in dark */
+    --primary-foreground: 208 100% 6%;
+    
+    --secondary: 205 62% 25%; /* Darker blue */
+    --secondary-foreground: 48 56% 95%;
+    
+    --muted: 208 50% 12%;
+    --muted-foreground: 48 30% 65%;
+    
+    --accent: 25 64% 78%; /* Peach accent in dark */
+    --accent-foreground: 208 100% 6%;
+    
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    
+    --border: 208 50% 15%;
+    --input: 208 50% 15%;
+    --ring: 21 96% 60%;
   }
 }
 
@@ -103,34 +127,101 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer components {
+  /* Sunset-themed components */
+  .btn-sunset {
+    @apply bg-gradient-to-r from-learning-coral to-learning-peach text-white shadow-sunset hover:shadow-lg;
+    @apply transition-all duration-300 hover:scale-105;
+  }
+  
+  .btn-ocean {
+    @apply bg-gradient-to-r from-learning-blue to-learning-secondary text-white shadow-ocean;
+    @apply transition-all duration-300 hover:scale-105;
+  }
+  
+  .card-sunset {
+    @apply bg-gradient-to-br from-bg-cream to-bg-peach border border-learning-peach/30 shadow-soft;
+    @apply transition-all duration-300 hover:shadow-sunset;
+  }
+  
+  .text-gradient-sunset {
+    @apply bg-gradient-to-r from-learning-coral to-learning-peach bg-clip-text text-transparent font-bold;
+  }
+  
+  .text-gradient-ocean {
+    @apply bg-gradient-to-r from-learning-blue to-learning-secondary bg-clip-text text-transparent font-bold;
   }
 }
 
 @layer utilities {
-  /* Animation utilities */
+  /* Animation utilities with sunset theme */
   .animate-fade-in {
-    animation: fade-in 0.3s ease-out;
+    animation: fade-in 0.5s ease-out forwards;
   }
   
   .animate-scale-in {
-    animation: scale-in 0.2s ease-out;
+    animation: scale-in 0.3s ease-out forwards;
   }
   
-  .hover-scale {
-    @apply transition-transform duration-200 hover:scale-105;
+  .animate-slide-up {
+    animation: slide-up 0.4s ease-out forwards;
+  }
+  
+  .hover-lift {
+    @apply transition-all duration-300 hover:scale-105 hover:shadow-sunset;
   }
   
   .story-link {
-    @apply relative inline-block after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-primary after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left;
+    @apply relative inline-block after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-learning-coral after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left;
+  }
+  
+  .pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
   }
 }
 
 @keyframes fade-in {
-  0% { opacity: 0; transform: translateY(10px); }
-  100% { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes scale-in {
-  0% { transform: scale(0.95); opacity: 0; }
-  100% { transform: scale(1); opacity: 1; }
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 5px hsl(var(--learning-coral) / 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px hsl(var(--learning-coral) / 0.6);
+  }
 }
