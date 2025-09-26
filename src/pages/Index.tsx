@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { BookOpen } from 'lucide-react';
+import { BookOpen, Trophy, User, LogOut } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import LoadingScreen from '@/components/LoadingScreen';
 import BookSearch from '@/components/BookSearch';
 import BookCard from '@/components/BookCard';
@@ -9,7 +11,10 @@ import BookTabs from '@/components/BookTabs';
 import BannedBookWarning from '@/components/BannedBookWarning';
 import { fallbackDatabase } from '@/data/fallbackDatabase';
 import { useToast } from '@/hooks/use-toast';
+import { useAuth } from '@/hooks/useAuth';
+import { useGameification } from '@/hooks/useGameification';
 import { Icon } from '@/components/icons/Icon';
+import { useNavigate } from 'react-router-dom';
 
 const Index = () => {
   const [showLoading, setShowLoading] = useState(true);
@@ -23,6 +28,20 @@ const Index = () => {
   const [showBannedWarning, setShowBannedWarning] = useState(false);
   const [isGeneratingBook, setIsGeneratingBook] = useState(false);
   const { toast } = useToast();
+  const { user, signOut } = useAuth();
+  const { profile } = useGameification();
+  const navigate = useNavigate();
+
+  const handleSignOut = async () => {
+    const { error } = await signOut();
+    if (error) {
+      toast({
+        title: 'Error signing out',
+        description: error.message,
+        variant: 'destructive'
+      });
+    }
+  };
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -100,6 +119,45 @@ const Index = () => {
 
       <div className="min-h-screen bg-background p-4 md:p-8">
         <div className="max-w-6xl mx-auto">
+          {/* User Navigation Header */}
+          <div className="flex justify-between items-center mb-6">
+            <div className="flex items-center gap-3">
+              <Avatar className="w-10 h-10">
+                <AvatarFallback className="bg-learning-blue text-white">
+                  {profile?.display_name?.[0]?.toUpperCase() || user?.email?.[0]?.toUpperCase() || <User className="w-5 h-5" />}
+                </AvatarFallback>
+              </Avatar>
+              <div>
+                <p className="font-semibold text-learning-blue">
+                  {profile?.display_name || user?.email?.split('@')[0] || 'Reader'}
+                </p>
+                <p className="text-sm text-foreground/60">Welcome back!</p>
+              </div>
+            </div>
+            
+            <div className="flex items-center gap-3">
+              <Button
+                onClick={() => navigate('/progress')}
+                variant="outline"
+                className="flex items-center gap-2 border-learning-blue text-learning-blue hover:bg-learning-blue hover:text-white"
+              >
+                <Trophy className="w-4 h-4" />
+                <span className="hidden sm:inline">Points:</span>
+                <span className="font-bold">{profile?.total_points || 0}</span>
+              </Button>
+              
+              <Button
+                onClick={handleSignOut}
+                variant="ghost"
+                size="sm"
+                className="text-foreground/60 hover:text-foreground"
+              >
+                <LogOut className="w-4 h-4" />
+                <span className="hidden sm:inline ml-2">Sign Out</span>
+              </Button>
+            </div>
+          </div>
+
           <header className="text-center mb-8 md:mb-12">
             <BookOpen className="w-14 h-14 md:w-16 md:h-16 mx-auto mb-4 text-primary drop-shadow-lg" aria-hidden="true" />
             <h1 className="text-3xl md:text-5xl font-bold text-primary mb-2">

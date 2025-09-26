@@ -4,6 +4,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 import { Icon } from '@/components/icons/Icon';
+import PointsButton from '@/components/PointsButton';
 
 interface BookData {
   title: string;
@@ -62,8 +63,15 @@ const BookTabs = ({ bookData, userPredictions }: BookTabsProps) => {
             <p className="text-sm md:text-base text-card-foreground"><Icon name="circle" size={12} className="text-green-500 inline mr-1" /> <strong>Green</strong> = Think deeper</p>
           </div>
           {bookData.questions?.map((q, idx) => (
-            <div key={idx} className="bg-card rounded-lg p-4 md:p-5 border border-border shadow-sm">
-              <p className="text-card-foreground font-medium text-sm md:text-base">{q}</p>
+            <div key={idx} className="bg-card rounded-lg p-4 md:p-5 border border-border shadow-sm flex items-start justify-between gap-4">
+              <p className="text-card-foreground font-medium text-sm md:text-base flex-1">{q}</p>
+              <PointsButton 
+                activityType="discussion" 
+                bookTitle={bookData.title}
+                className="bg-learning-orange hover:bg-learning-orange/90 text-white text-sm shrink-0"
+              >
+                Answer
+              </PointsButton>
             </div>
           ))}
         </TabsContent>
@@ -74,8 +82,15 @@ const BookTabs = ({ bookData, userPredictions }: BookTabsProps) => {
             Fun Activities
           </h3>
           {bookData.activities?.map((activity, idx) => (
-            <div key={idx} className="bg-bg-purple rounded-lg p-4 md:p-5 border border-learning-purple/30 shadow-sm">
-              <p className="text-card-foreground font-medium text-sm md:text-base">{activity}</p>
+            <div key={idx} className="bg-bg-purple rounded-lg p-4 md:p-5 border border-learning-purple/30 shadow-sm flex items-start justify-between gap-4">
+              <p className="text-card-foreground font-medium text-sm md:text-base flex-1">{activity}</p>
+              <PointsButton 
+                activityType="creative" 
+                bookTitle={bookData.title}
+                className="bg-learning-purple hover:bg-learning-purple/90 text-white text-sm shrink-0"
+              >
+                Complete
+              </PointsButton>
             </div>
           ))}
         </TabsContent>
