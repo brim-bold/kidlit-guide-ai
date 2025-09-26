@@ -105,7 +105,7 @@ const BookTabs = ({ bookData, userPredictions, isAuthenticated = false }: BookTa
 
         <TabsContent value="questions" className="space-y-4">
           <div className="bg-bg-yellow rounded-2xl p-4 mb-6 border border-character-yellow/20">
-            <h4 className="font-bold text-character-yellow mb-3 flex items-center gap-2">
+            <h4 className="font-bold text-foreground mb-3 flex items-center gap-2">
               <CharacterAvatar character="wink" size="sm" animate={false} />
               Question Guide
             </h4>
