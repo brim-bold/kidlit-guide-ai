@@ -124,7 +124,7 @@ const Auth = () => {
         <div className="text-center mb-8">
           <div className="flex items-center justify-center gap-2 mb-4">
             <BookOpen className="w-8 h-8 text-primary" />
-            <h1 className="text-3xl font-bold text-foreground">ReadSmart</h1>
+            <h1 className="text-3xl font-bold text-foreground">Book Explorer</h1>
           </div>
           <p className="text-muted-foreground">
             Build reading skills with AI-powered comprehension tools
@@ -194,7 +194,7 @@ const Auth = () => {
                   Create Account
                 </CardTitle>
                 <CardDescription>
-                  Join ReadSmart to track reading progress
+                  Join Book Explorer to track reading progress
                 </CardDescription>
               </CardHeader>
               <CardContent>
