@@ -129,6 +129,10 @@ export default {
         "slide-up": "slide-up 0.4s ease-out",
         "pulse-glow": "pulse-glow 2s ease-in-out infinite"
       },
+      fontFamily: {
+        'dyslexic': ['OpenDyslexic', 'sans-serif'],
+        'sans': ['ui-sans-serif', 'system-ui', 'sans-serif'],
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],

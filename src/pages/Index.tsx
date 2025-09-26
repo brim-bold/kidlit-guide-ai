@@ -11,6 +11,7 @@ import BookTabs from '@/components/BookTabs';
 import BannedBookWarning from '@/components/BannedBookWarning';
 import GamificationBanner from '@/components/GamificationBanner';
 import PopularBooks from '@/components/PopularBooks';
+import { DyslexiaToggle } from '@/components/DyslexiaToggle';
 import { fallbackDatabase } from '@/data/fallbackDatabase';
 import { googleBooksService, GoogleBook } from '@/services/googleBooksService';
 import { supabase } from '@/integrations/supabase/client';
@@ -197,6 +198,7 @@ const Index = () => {
                 </div>
                 
             <div className="flex items-center gap-3">
+              <DyslexiaToggle />
               <Button
                 onClick={() => navigate('/progress')}
                 className="btn-sunset hover-lift flex items-center gap-2"
@@ -232,6 +234,7 @@ const Index = () => {
                 </div>
                 
                 <div className="flex items-center gap-3">
+                  <DyslexiaToggle />
                   <Button
                     onClick={() => navigate('/auth')}
                     className="btn-sunset hover-lift flex items-center gap-2"

@@ -10,10 +10,10 @@ All colors MUST be HSL and based on the uploaded color palette.
   :root {
     /* Summer Sunset Color Palette - Light Mode */
     --background: 0 0% 98%; /* Very light background */
-    --foreground: 208 100% 27%; /* Deep blue #004E89 for text */
+    --foreground: 0 0% 9%; /* Nearly black for accessibility */
 
     --card: 48 56% 93%; /* Light cream #EFEFD0 variation */
-    --card-foreground: 208 100% 27%; /* Deep blue text on cards */
+    --card-foreground: 0 0% 9%; /* Nearly black text on cards */
 
     --popover: 0 0% 100%; /* Pure white for popovers */
     --popover-foreground: 208 100% 27%;
@@ -128,6 +128,10 @@ All colors MUST be HSL and based on the uploaded color palette.
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  .dyslexic-font * {
+    font-family: 'OpenDyslexic', sans-serif !important;
   }
 }
 
