@@ -14,11 +14,11 @@ const PredictionSection = ({ predictions, userPredictions, onPredictionChange }:
     <section className="mb-6 md:mb-8 bg-bg-blue rounded-xl p-6 md:p-8 border border-learning-blue/30 shadow-md">
       <div className="flex items-center gap-3 mb-4">
         <MessageSquare className="text-learning-blue flex-shrink-0" size={28} />
-        <h2 className="text-xl md:text-2xl font-bold text-learning-blue">Before You Read: Make Predictions!</h2>
+        <h2 className="text-xl font-bold text-learning-blue">Before You Read: Make Predictions!</h2>
       </div>
       {predictions.map((pred, idx) => (
         <div key={idx} className="mb-4">
-          <Label htmlFor={`prediction-${idx}`} className="block text-foreground font-semibold mb-2 text-sm md:text-base">
+          <Label htmlFor={`prediction-${idx}`} className="block text-foreground font-bold mb-2 text-base">
             {pred}
           </Label>
           <Textarea

@@ -14,10 +14,10 @@ const StrategySpotlight = ({ comprehensionSkill, strategyTip, onClose }: Strateg
         <div className="flex-1">
           <div className="flex items-center gap-3 mb-3">
             <Lightbulb className="text-learning-orange flex-shrink-0" size={28} />
-            <h2 className="text-xl md:text-2xl font-bold text-learning-orange">Strategy Spotlight</h2>
+            <h2 className="text-xl font-bold text-learning-orange">Strategy Spotlight</h2>
           </div>
           <div className="bg-card rounded-lg p-4 md:p-5 mb-4 shadow-sm">
-            <p className="text-base md:text-lg font-bold text-learning-orange mb-2">
+            <p className="text-lg font-bold text-learning-orange mb-2">
               <span className="flex items-center gap-2">
                 <Lightbulb size={16} />
                 Focus Skill: {comprehensionSkill}

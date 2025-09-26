@@ -46,8 +46,8 @@ const BookCard = ({ bookData }: BookCardProps) => {
         <div className="flex-grow text-center md:text-left">
           <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-4">
             <div>
-              <h2 className="text-2xl md:text-4xl font-bold text-foreground mb-2">{bookData.title}</h2>
-              <p className="text-lg md:text-2xl text-primary mb-4 font-semibold">by {bookData.author}</p>
+              <h2 className="text-2xl font-bold text-foreground mb-2">{bookData.title}</h2>
+              <p className="text-lg text-primary mb-4 font-bold">by {bookData.author}</p>
             </div>
             {bookData.summary && (
               <TextToSpeechButton 

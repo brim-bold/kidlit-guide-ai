@@ -180,7 +180,7 @@ const BookTabs = ({ bookData, userPredictions, isAuthenticated = false }: BookTa
 
         <TabsContent value="reflection" className="space-y-6">
           <div className="bg-bg-green rounded-2xl p-6 border border-character-green/20">
-            <h3 className="font-bold text-character-green mb-4 text-xl flex items-center gap-2">
+            <h3 className="text-xl font-bold text-character-green mb-4 flex items-center gap-2">
               <CharacterAvatar character="clover" size="sm" animate={false} />
               Story Summary Framework
             </h3>
@@ -217,7 +217,7 @@ const BookTabs = ({ bookData, userPredictions, isAuthenticated = false }: BookTa
 
           {Object.keys(userPredictions).length > 0 && (
             <div className="bg-bg-blue rounded-2xl p-6 border border-character-blue/20">
-              <h3 className="font-bold text-character-blue mb-4 text-xl flex items-center gap-2">
+              <h3 className="text-xl font-bold text-character-blue mb-4 flex items-center gap-2">
                 <CharacterAvatar character="shocked" size="sm" animate={false} />
                 How Were Your Predictions?
               </h3>
