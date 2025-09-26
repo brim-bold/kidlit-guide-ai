@@ -34,19 +34,12 @@ const Index = () => {
   const [showBannedWarning, setShowBannedWarning] = useState(false);
   const [isGeneratingBook, setIsGeneratingBook] = useState(false);
   const { toast } = useToast();
-  const { user, signOut } = useAuth();
-  const { profile } = useGameification();
+  const { user, profile, isParent, signOut } = useAuth();
+  const { profile: gameProfile } = useGameification();
   const navigate = useNavigate();
 
   const handleSignOut = async () => {
-    const { error } = await signOut();
-    if (error) {
-      toast({
-        title: 'Error signing out',
-        description: error.message,
-        variant: 'destructive'
-      });
-    }
+    await signOut();
   };
 
   useEffect(() => {
@@ -208,6 +201,16 @@ const Index = () => {
                 <DyslexiaToggle />
                 {user ? (
                   <>
+                    {isParent && (
+                      <Button
+                        onClick={() => navigate('/parent-dashboard')}
+                        className="bg-character-purple text-white hover:bg-character-purple/90 flex items-center gap-2 rounded-2xl px-4 py-2 focus:ring-2 focus:ring-character-purple focus:ring-offset-2"
+                        size="sm"
+                      >
+                        <User className="w-4 h-4" />
+                        Dashboard
+                      </Button>
+                    )}
                     <Button
                       onClick={() => navigate('/progress')}
                       className="bg-character-blue text-white hover:bg-character-blue/90 flex items-center gap-2 rounded-2xl px-4 py-2 focus:ring-2 focus:ring-character-blue focus:ring-offset-2"

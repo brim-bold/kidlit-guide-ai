@@ -40,39 +40,62 @@ export type Database = {
       }
       profiles: {
         Row: {
+          birth_year: number | null
           books_completed: number
+          child_name: string | null
           created_at: string
           current_streak: number
           display_name: string | null
+          grade_level: string | null
           id: string
           longest_streak: number
+          parent_id: string | null
+          role: Database["public"]["Enums"]["user_role"]
           total_points: number
           updated_at: string
           user_id: string
         }
         Insert: {
+          birth_year?: number | null
           books_completed?: number
+          child_name?: string | null
           created_at?: string
           current_streak?: number
           display_name?: string | null
+          grade_level?: string | null
           id?: string
           longest_streak?: number
+          parent_id?: string | null
+          role?: Database["public"]["Enums"]["user_role"]
           total_points?: number
           updated_at?: string
           user_id: string
         }
         Update: {
+          birth_year?: number | null
           books_completed?: number
+          child_name?: string | null
           created_at?: string
           current_streak?: number
           display_name?: string | null
+          grade_level?: string | null
           id?: string
           longest_streak?: number
+          parent_id?: string | null
+          role?: Database["public"]["Enums"]["user_role"]
           total_points?: number
           updated_at?: string
           user_id?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "profiles_parent_id_fkey"
+            columns: ["parent_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       reading_sessions: {
         Row: {
@@ -149,12 +172,45 @@ export type Database = {
         }
         Relationships: []
       }
+      user_roles: {
+        Row: {
+          id: string
+          role: Database["public"]["Enums"]["user_role"]
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          role: Database["public"]["Enums"]["user_role"]
+          user_id: string
+        }
+        Update: {
+          id?: string
+          role?: Database["public"]["Enums"]["user_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      get_user_children: {
+        Args: { _parent_id: string }
+        Returns: {
+          child_id: string
+          child_name: string
+          grade_level: string
+          user_id: string
+        }[]
+      }
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["user_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
       badge_type:
@@ -164,6 +220,7 @@ export type Database = {
         | "question_pro"
         | "week_warrior"
         | "book_worm"
+      user_role: "parent" | "child"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -299,6 +356,7 @@ export const Constants = {
         "week_warrior",
         "book_worm",
       ],
+      user_role: ["parent", "child"],
     },
   },
 } as const
