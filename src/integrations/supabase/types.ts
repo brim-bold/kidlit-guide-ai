@@ -14,7 +14,141 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      books_read: {
+        Row: {
+          book_author: string | null
+          book_title: string
+          completed_at: string
+          id: string
+          user_id: string
+        }
+        Insert: {
+          book_author?: string | null
+          book_title: string
+          completed_at?: string
+          id?: string
+          user_id: string
+        }
+        Update: {
+          book_author?: string | null
+          book_title?: string
+          completed_at?: string
+          id?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          books_completed: number
+          created_at: string
+          current_streak: number
+          display_name: string | null
+          id: string
+          longest_streak: number
+          total_points: number
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          books_completed?: number
+          created_at?: string
+          current_streak?: number
+          display_name?: string | null
+          id?: string
+          longest_streak?: number
+          total_points?: number
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          books_completed?: number
+          created_at?: string
+          current_streak?: number
+          display_name?: string | null
+          id?: string
+          longest_streak?: number
+          total_points?: number
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      reading_sessions: {
+        Row: {
+          created_at: string
+          id: string
+          minutes_read: number
+          session_date: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          minutes_read?: number
+          session_date: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          minutes_read?: number
+          session_date?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      user_activities: {
+        Row: {
+          activity_type: string
+          book_title: string | null
+          created_at: string
+          id: string
+          points_earned: number
+          user_id: string
+        }
+        Insert: {
+          activity_type: string
+          book_title?: string | null
+          created_at?: string
+          id?: string
+          points_earned: number
+          user_id: string
+        }
+        Update: {
+          activity_type?: string
+          book_title?: string | null
+          created_at?: string
+          id?: string
+          points_earned?: number
+          user_id?: string
+        }
+        Relationships: []
+      }
+      user_badges: {
+        Row: {
+          badge_type: Database["public"]["Enums"]["badge_type"]
+          earned_at: string
+          id: string
+          user_id: string
+        }
+        Insert: {
+          badge_type: Database["public"]["Enums"]["badge_type"]
+          earned_at?: string
+          id?: string
+          user_id: string
+        }
+        Update: {
+          badge_type?: Database["public"]["Enums"]["badge_type"]
+          earned_at?: string
+          id?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -23,7 +157,13 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      badge_type:
+        | "first_book"
+        | "five_day_streak"
+        | "vocabulary_master"
+        | "question_pro"
+        | "week_warrior"
+        | "book_worm"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +290,15 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      badge_type: [
+        "first_book",
+        "five_day_streak",
+        "vocabulary_master",
+        "question_pro",
+        "week_warrior",
+        "book_worm",
+      ],
+    },
   },
 } as const
