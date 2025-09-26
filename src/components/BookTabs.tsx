@@ -81,8 +81,11 @@ const BookTabs = ({ bookData, userPredictions }: BookTabsProps) => {
         </TabsContent>
 
         <TabsContent value="reflection" className="space-y-6">
-          <div className="bg-gradient-success/20 rounded-xl p-6 md:p-8 border-2 border-learning-green/30 shadow-card">
-            <h3 className="font-bold text-learning-green mb-4 text-xl md:text-2xl">📖 After Reading: Story Summary</h3>
+          <div className="bg-bg-green rounded-xl p-6 md:p-8 border-2 border-learning-green/30 shadow-card">
+            <h3 className="font-bold text-learning-green mb-4 text-xl md:text-2xl flex items-center gap-2">
+              <Icon name="bookOpen" size={24} />
+              After Reading: Story Summary
+            </h3>
             <p className="text-sm md:text-base text-muted-foreground mb-6 italic">Use this framework to summarize:</p>
             
             <div className="space-y-5">
@@ -107,29 +110,39 @@ const BookTabs = ({ bookData, userPredictions }: BookTabsProps) => {
             </div>
 
             <div className="mt-6 bg-card rounded-xl p-4 md:p-5 shadow-button">
-              <p className="text-sm md:text-base text-learning-green font-medium">
-                <strong>💡 Parent Tip:</strong> Have your child say their summary out loud!
+              <p className="text-sm md:text-base text-learning-green font-medium flex items-center gap-2">
+                <Icon name="lightbulb" size={18} />
+                <strong>Parent Tip:</strong> Have your child say their summary out loud!
               </p>
             </div>
           </div>
 
           {Object.keys(userPredictions).length > 0 && (
-            <div className="bg-gradient-info/20 rounded-xl p-6 md:p-8 border-2 border-learning-blue/30 shadow-card">
-              <h3 className="font-bold text-learning-blue mb-4 text-xl md:text-2xl">🔮 How Were Your Predictions?</h3>
+            <div className="bg-bg-blue rounded-xl p-6 md:p-8 border-2 border-learning-blue/30 shadow-card">
+              <h3 className="font-bold text-learning-blue mb-4 text-xl md:text-2xl flex items-center gap-2">
+                <Icon name="eye" size={24} />
+                How Were Your Predictions?
+              </h3>
               <p className="text-card-foreground mb-5 text-sm md:text-base">Look back at what you predicted:</p>
               {Object.entries(userPredictions).map(([idx, pred]) => (
                 pred && (
                   <div key={idx} className="bg-card rounded-xl p-4 md:p-5 mb-4 shadow-button">
-                    <p className="text-card-foreground mb-3 text-sm md:text-base"><strong>Your prediction:</strong> {pred}</p>
+                    <p className="text-card-foreground mb-3 text-sm md:text-base flex items-center gap-2">
+                      <img src="/src/assets/faces/cheerful-face.png" alt="prediction" className="w-6 h-6" />
+                      <strong>Your prediction:</strong> {pred}
+                    </p>
                     <div className="flex gap-2 flex-wrap">
-                      <Button size="sm" className="bg-learning-green hover:bg-learning-green/80 text-white font-semibold">
-                        ✓ Right!
+                      <Button size="sm" className="bg-learning-green hover:bg-learning-green/80 text-white font-semibold flex items-center gap-2">
+                        <img src="/src/assets/faces/happy-face.png" alt="correct" className="w-4 h-4" />
+                        Right!
                       </Button>
-                      <Button size="sm" className="bg-learning-orange hover:bg-learning-orange/80 text-white font-semibold">
-                        ↻ Close
+                      <Button size="sm" className="bg-learning-orange hover:bg-learning-orange/80 text-white font-semibold flex items-center gap-2">
+                        <img src="/src/assets/faces/star-face.png" alt="close" className="w-4 h-4" />
+                        Close
                       </Button>
-                      <Button size="sm" className="bg-learning-blue hover:bg-learning-blue/80 text-white font-semibold">
-                        ✗ Surprised!
+                      <Button size="sm" className="bg-learning-blue hover:bg-learning-blue/80 text-white font-semibold flex items-center gap-2">
+                        <img src="/src/assets/faces/surprised-face.png" alt="surprised" className="w-4 h-4" />
+                        Surprised!
                       </Button>
                     </div>
                   </div>

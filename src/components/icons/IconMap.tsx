@@ -23,7 +23,8 @@ import {
   Activity,
   Zap,
   Heart,
-  Star
+  Star,
+  Search
 } from 'lucide-react';
 
 export const IconMap = {
@@ -38,6 +39,7 @@ export const IconMap = {
   zap: Zap,
   heart: Heart,
   star: Star,
+  search: Search,
   
   // UI Elements
   circle: Circle,

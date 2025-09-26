@@ -79,7 +79,7 @@ const BookSearch = ({
                   setBookTitle(book.title);
                   setBookAuthor(book.author);
                 }}
-                className="px-3 md:px-4 py-2 bg-accent/50 text-accent-foreground rounded-full text-sm md:text-base font-medium hover:bg-accent hover:scale-105 transition-smooth border-border"
+                className="px-3 md:px-4 py-2 bg-accent/50 text-accent-foreground rounded-full text-sm md:text-base font-medium hover:bg-accent transition-all border-border"
                 aria-label={`Select ${book.title} by ${book.author}`}
               >
                 {book.title}
@@ -91,10 +91,10 @@ const BookSearch = ({
         <Button
           onClick={onSearch}
           disabled={loading}
-          className="w-full bg-primary hover:bg-primary/90 text-primary-foreground py-3 md:py-4 rounded-lg font-bold text-base md:text-lg hover:scale-105 transition-smooth shadow-sm hover:shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full bg-primary hover:bg-primary/90 text-primary-foreground py-3 md:py-4 rounded-lg font-bold text-base md:text-lg transition-all shadow-sm hover:shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
           aria-label={loading ? 'Searching for book' : 'Search for book'}
         >
-          <Search size={20} aria-hidden="true" className="mr-2" />
+          <Icon name="search" size={20} className="mr-2" />
           {loading ? 'Searching...' : 'Explore Book'}
         </Button>
       </div>
@@ -106,7 +106,7 @@ const BookSearch = ({
             <Button
               onClick={onGenerateWithAI}
               disabled={isGeneratingBook}
-              className="bg-learning-purple hover:bg-learning-purple/90 text-white px-4 py-2 rounded-lg font-semibold hover:scale-105 transition-smooth disabled:opacity-50"
+              className="bg-learning-purple hover:bg-learning-purple/90 text-white px-4 py-2 rounded-lg font-semibold transition-all disabled:opacity-50"
             >
               <Icon name={isGeneratingBook ? 'refreshCw' : 'bot'} size={16} className="mr-2" />
               {isGeneratingBook ? 'Searching...' : 'Find Book with AI'}
