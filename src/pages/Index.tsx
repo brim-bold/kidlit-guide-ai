@@ -178,153 +178,145 @@ const Index = () => {
         <BannedBookWarning onClose={() => setShowBannedWarning(false)} />
       )}
 
-      <div className="min-h-screen bg-background p-4 md:p-8">
-        <div className="max-w-6xl mx-auto">
-          {/* User Navigation Header */}
-          <div className="flex justify-between items-center mb-6">
-            {user ? (
-              <>
+      <div className="min-h-screen bg-background">
+        <div className="max-w-4xl mx-auto p-4 space-y-6">
+          
+          {/* Simple Header Card */}
+          <div className="bg-white rounded-3xl shadow-soft p-6 border border-border/50">
+            <div className="flex justify-between items-center mb-4">
+              {user ? (
                 <div className="flex items-center gap-3">
-                  <div className="bg-gradient-cheerful p-2 rounded-full shadow-cheerful">
-                    <CharacterAvatar character="cheerful" size="sm" animate={false} />
-                  </div>
+                  <CharacterAvatar character="cheerful" size="md" animate={false} />
                   <div>
-                    <p className="font-semibold text-primary">
+                    <p className="font-semibold text-foreground">
                       {profile?.display_name || user?.email?.split('@')[0] || 'Reader'}
                     </p>
-                    <p className="text-sm text-foreground/60">Welcome back!</p>
+                    <p className="text-sm text-muted-foreground">Welcome back!</p>
                   </div>
                 </div>
-                
-            <div className="flex items-center gap-3">
-              <DyslexiaToggle />
-              <Button
-                onClick={() => navigate('/progress')}
-                className="bg-gradient-magical text-white shadow-magical hover:scale-105 transition-all duration-300 flex items-center gap-2 rounded-2xl px-6"
-              >
-                <Trophy className="w-4 h-4" />
-                <span className="hidden sm:inline">Points:</span>
-                <span className="font-bold">{profile?.total_points || 0}</span>
-              </Button>
-              
-              <Button
-                onClick={handleSignOut}
-                variant="ghost"
-                size="sm"
-                className="text-foreground/60 hover:text-foreground transition-smooth rounded-2xl"
-              >
-                <LogOut className="w-4 h-4" />
-                <span className="hidden sm:inline ml-2">Sign Out</span>
-              </Button>
-            </div>
-              </>
-            ) : (
-              <div className="flex justify-between items-center w-full">
+              ) : (
                 <div className="flex items-center gap-3">
-                  <div className="bg-gradient-nature p-2 rounded-full shadow-soft">
-                    <CharacterAvatar character="star" size="sm" animate={false} />
-                  </div>
+                  <CharacterAvatar character="star" size="md" animate={false} />
                   <div>
-                    <p className="font-semibold text-primary">Book Explorer</p>
-                    <p className="text-sm text-foreground/60">Guest Mode</p>
+                    <p className="font-semibold text-foreground">Book Explorer</p>
+                    <p className="text-sm text-muted-foreground">Guest Mode</p>
                   </div>
                 </div>
-                
-                <div className="flex items-center gap-3">
-                  <DyslexiaToggle />
+              )}
+              
+              <div className="flex items-center gap-2">
+                <DyslexiaToggle />
+                {user ? (
+                  <>
+                    <Button
+                      onClick={() => navigate('/progress')}
+                      className="btn-cheerful flex items-center gap-2"
+                      size="sm"
+                    >
+                      <Trophy className="w-4 h-4" />
+                      <span className="font-bold">{profile?.total_points || 0}</span>
+                    </Button>
+                    <Button
+                      onClick={handleSignOut}
+                      variant="ghost"
+                      size="sm"
+                      className="text-muted-foreground hover:text-foreground"
+                    >
+                      <LogOut className="w-4 h-4" />
+                    </Button>
+                  </>
+                ) : (
                   <Button
                     onClick={() => navigate('/auth')}
-                    className="bg-gradient-cheerful text-white shadow-cheerful hover:scale-105 transition-all duration-300 flex items-center gap-2 rounded-2xl px-6"
+                    className="btn-cheerful"
+                    size="sm"
                   >
-                    <Trophy className="w-4 h-4" />
-                    <span className="hidden sm:inline">Join to Earn Points!</span>
-                    <span className="sm:hidden">Sign In</span>
+                    <Trophy className="w-4 h-4 mr-2" />
+                    Sign In
                   </Button>
+                )}
+              </div>
+            </div>
+            
+            <div className="text-center">
+              <div className="flex justify-center mb-4">
+                <div className="bg-gradient-cheerful p-3 rounded-2xl shadow-cheerful">
+                  <BookOpen className="w-8 h-8 text-white" />
                 </div>
               </div>
-            )}
+              <h1 className="text-3xl font-bold mb-2 bg-gradient-cheerful bg-clip-text text-transparent">
+                Book Explorer
+              </h1>
+              <p className="text-muted-foreground">
+                Discover, Learn, and Grow with Every Book!
+              </p>
+            </div>
           </div>
 
-          <header className="text-center mb-8 md:mb-12 animate-fade-in">
-            <div className="relative mb-6">
-              {/* Character friends around the logo */}
-              <div className="flex justify-center items-center gap-4 mb-4">
-                <CharacterAvatar character="cheerful" size="lg" className="animate-bounce" />
-                <div className="bg-gradient-cheerful p-4 rounded-3xl shadow-cheerful">
-                  <BookOpen className="w-12 h-12 md:w-16 md:h-16 text-white drop-shadow-lg" aria-hidden="true" />
-                </div>
-                <CharacterAvatar character="excited" size="lg" className="animate-bounce delay-75" />
-              </div>
-              
-              {/* Floating characters */}
-              <div className="absolute -top-4 left-1/4 animate-pulse">
-                <CharacterAvatar character="star" size="sm" />
-              </div>
-              <div className="absolute -top-2 right-1/4 animate-pulse delay-150">
-                <CharacterAvatar character="flower" size="sm" />
-              </div>
+          {/* Search Card */}
+          <div className="bg-white rounded-3xl shadow-soft p-6 border border-border/50">
+            <BookSearch
+              bookTitle={bookTitle}
+              setBookTitle={setBookTitle}
+              bookAuthor={bookAuthor}
+              setBookAuthor={setBookAuthor}
+              onSearch={searchBook}
+              loading={loading}
+              error={error}
+              onGenerateWithAI={generateBookWithAI}
+              isGeneratingBook={isGeneratingBook}
+              fallbackDatabase={fallbackDatabase}
+            />
+          </div>
+
+          {/* Popular Books Card - only when no book selected */}
+          {!bookData && (
+            <div className="bg-white rounded-3xl shadow-soft p-6 border border-border/50">
+              <PopularBooks onBookSelect={handleBookSelect} />
             </div>
-            
-            <h1 className="text-4xl md:text-6xl font-bold mb-4 bg-gradient-cheerful bg-clip-text text-transparent animate-scale-in">
-              Book Explorer
-            </h1>
-            <p className="text-lg md:text-xl text-foreground/80 flex items-center justify-center gap-2 animate-slide-up">
-              <Icon name="sparkles" size={20} />
-              Discover, Learn, and Grow with Every Book!
-              <Icon name="heart" size={20} />
-            </p>
-            
-            {/* Character speech bubbles */}
-            <div className="flex justify-center mt-6 gap-8">
-              <div className="relative">
-                <div className="bg-bg-yellow border-2 border-character-yellow rounded-2xl px-4 py-2 text-sm font-medium text-foreground shadow-soft">
-                  Let's read together! 📚
-                </div>
-                <div className="absolute -bottom-2 left-6 w-4 h-4 bg-bg-yellow border-r-2 border-b-2 border-character-yellow rotate-45"></div>
-              </div>
+          )}
+
+          {/* Gamification Banner - only for guests */}
+          {!user && (
+            <div className="bg-white rounded-3xl shadow-soft p-6 border border-border/50">
+              <GamificationBanner />
             </div>
-          </header>
+          )}
 
-          {/* Show gamification banner for non-authenticated users */}
-          {!user && <GamificationBanner />}
-
-          {/* Show popular books when no book is selected */}
-          {!bookData && <PopularBooks onBookSelect={handleBookSelect} />}
-
-          <BookSearch
-            bookTitle={bookTitle}
-            setBookTitle={setBookTitle}
-            bookAuthor={bookAuthor}
-            setBookAuthor={setBookAuthor}
-            onSearch={searchBook}
-            loading={loading}
-            error={error}
-            onGenerateWithAI={generateBookWithAI}
-            isGeneratingBook={isGeneratingBook}
-            fallbackDatabase={fallbackDatabase}
-          />
-
+          {/* Book Content Cards */}
           {bookData && (
-            <div className="max-w-5xl mx-auto">
-              <BookCard bookData={bookData} />
+            <div className="space-y-6">
+              {/* Book Info Card */}
+              <div className="bg-white rounded-3xl shadow-soft p-6 border border-border/50">
+                <BookCard bookData={bookData} />
+              </div>
 
+              {/* Strategy Card */}
               {showStrategy && bookData.comprehensionSkill && (
-                <StrategySpotlight
-                  comprehensionSkill={bookData.comprehensionSkill}
-                  strategyTip={bookData.strategyTip}
-                  onClose={() => setShowStrategy(false)}
-                />
+                <div className="bg-white rounded-3xl shadow-soft p-6 border border-border/50">
+                  <StrategySpotlight
+                    comprehensionSkill={bookData.comprehensionSkill}
+                    strategyTip={bookData.strategyTip}
+                    onClose={() => setShowStrategy(false)}
+                  />
+                </div>
               )}
 
+              {/* Predictions Card */}
               {bookData.predictions && (
-                <PredictionSection
-                  predictions={bookData.predictions}
-                  userPredictions={predictions}
-                  onPredictionChange={handlePredictionChange}
-                />
+                <div className="bg-white rounded-3xl shadow-soft p-6 border border-border/50">
+                  <PredictionSection
+                    predictions={bookData.predictions}
+                    userPredictions={predictions}
+                    onPredictionChange={handlePredictionChange}
+                  />
+                </div>
               )}
 
-              <BookTabs bookData={bookData} userPredictions={predictions} isAuthenticated={!!user} />
+              {/* Activities Card */}
+              <div className="bg-white rounded-3xl shadow-soft border border-border/50 overflow-hidden">
+                <BookTabs bookData={bookData} userPredictions={predictions} isAuthenticated={!!user} />
+              </div>
             </div>
           )}
         </div>
