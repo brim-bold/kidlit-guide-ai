@@ -182,7 +182,7 @@ const Index = () => {
         <div className="max-w-4xl mx-auto p-4 space-y-6">
           
           {/* Simple Header Card */}
-          <div className="bg-white rounded-3xl shadow-soft p-6 border border-border/50">
+          <div className="bg-white rounded-3xl shadow-soft p-6 border border-border/30">
             <div className="flex justify-between items-center mb-4">
               {user ? (
                 <div className="flex items-center gap-3">
@@ -210,7 +210,7 @@ const Index = () => {
                   <>
                     <Button
                       onClick={() => navigate('/progress')}
-                      className="btn-cheerful flex items-center gap-2"
+                      className="bg-character-blue text-white hover:bg-character-blue/90 flex items-center gap-2 rounded-2xl px-4 py-2 focus:ring-2 focus:ring-character-blue focus:ring-offset-2"
                       size="sm"
                     >
                       <Trophy className="w-4 h-4" />
@@ -220,7 +220,7 @@ const Index = () => {
                       onClick={handleSignOut}
                       variant="ghost"
                       size="sm"
-                      className="text-muted-foreground hover:text-foreground"
+                      className="text-muted-foreground hover:text-foreground focus:ring-2 focus:ring-character-blue focus:ring-offset-2"
                     >
                       <LogOut className="w-4 h-4" />
                     </Button>
@@ -228,7 +228,7 @@ const Index = () => {
                 ) : (
                   <Button
                     onClick={() => navigate('/auth')}
-                    className="btn-cheerful"
+                    className="bg-character-blue text-white hover:bg-character-blue/90 focus:ring-2 focus:ring-character-blue focus:ring-offset-2 rounded-2xl px-4 py-2"
                     size="sm"
                   >
                     <Trophy className="w-4 h-4 mr-2" />
@@ -240,11 +240,11 @@ const Index = () => {
             
             <div className="text-center">
               <div className="flex justify-center mb-4">
-                <div className="bg-gradient-cheerful p-3 rounded-2xl shadow-cheerful">
+                <div className="bg-character-blue p-3 rounded-2xl shadow-calm">
                   <BookOpen className="w-8 h-8 text-white" />
                 </div>
               </div>
-              <h1 className="text-3xl font-bold mb-2 bg-gradient-cheerful bg-clip-text text-transparent">
+              <h1 className="text-3xl font-bold mb-2 text-character-blue">
                 Book Explorer
               </h1>
               <p className="text-muted-foreground">
@@ -254,7 +254,7 @@ const Index = () => {
           </div>
 
           {/* Search Card */}
-          <div className="bg-white rounded-3xl shadow-soft p-6 border border-border/50">
+          <div className="bg-white rounded-3xl shadow-soft p-6 border border-border/30">
             <BookSearch
               bookTitle={bookTitle}
               setBookTitle={setBookTitle}
@@ -271,14 +271,14 @@ const Index = () => {
 
           {/* Popular Books Card - only when no book selected */}
           {!bookData && (
-            <div className="bg-white rounded-3xl shadow-soft p-6 border border-border/50">
+            <div className="bg-white rounded-3xl shadow-soft p-6 border border-border/30">
               <PopularBooks onBookSelect={handleBookSelect} />
             </div>
           )}
 
           {/* Gamification Banner - only for guests */}
           {!user && (
-            <div className="bg-white rounded-3xl shadow-soft p-6 border border-border/50">
+            <div className="bg-white rounded-3xl shadow-soft p-6 border border-border/30">
               <GamificationBanner />
             </div>
           )}
@@ -287,13 +287,13 @@ const Index = () => {
           {bookData && (
             <div className="space-y-6">
               {/* Book Info Card */}
-              <div className="bg-white rounded-3xl shadow-soft p-6 border border-border/50">
+              <div className="bg-white rounded-3xl shadow-soft p-6 border border-border/30">
                 <BookCard bookData={bookData} />
               </div>
 
               {/* Strategy Card */}
               {showStrategy && bookData.comprehensionSkill && (
-                <div className="bg-white rounded-3xl shadow-soft p-6 border border-border/50">
+                <div className="bg-white rounded-3xl shadow-soft p-6 border border-border/30">
                   <StrategySpotlight
                     comprehensionSkill={bookData.comprehensionSkill}
                     strategyTip={bookData.strategyTip}
@@ -304,7 +304,7 @@ const Index = () => {
 
               {/* Predictions Card */}
               {bookData.predictions && (
-                <div className="bg-white rounded-3xl shadow-soft p-6 border border-border/50">
+                <div className="bg-white rounded-3xl shadow-soft p-6 border border-border/30">
                   <PredictionSection
                     predictions={bookData.predictions}
                     userPredictions={predictions}
@@ -314,7 +314,7 @@ const Index = () => {
               )}
 
               {/* Activities Card */}
-              <div className="bg-white rounded-3xl shadow-soft border border-border/50 overflow-hidden">
+              <div className="bg-white rounded-3xl shadow-soft border border-border/30 overflow-hidden">
                 <BookTabs bookData={bookData} userPredictions={predictions} isAuthenticated={!!user} />
               </div>
             </div>

@@ -26,13 +26,13 @@ interface BookTabsProps {
 const BookTabs = ({ bookData, userPredictions, isAuthenticated = false }: BookTabsProps) => {
   return (
     <Tabs defaultValue="overview" className="w-full">
-      <div className="bg-gradient-cheerful p-1 rounded-2xl mb-6">
+      <div className="bg-character-blue p-1 rounded-2xl mb-6">
         <TabsList className="flex gap-1 bg-transparent w-full">
           {['overview', 'vocabulary', 'questions', 'activities', 'reflection'].map((tab) => (
             <TabsTrigger
               key={tab}
               value={tab}
-              className="flex-1 px-3 py-2 rounded-xl font-medium text-sm whitespace-nowrap data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:shadow-sm data-[state=inactive]:text-white/80 hover:text-white transition-all"
+              className="flex-1 px-3 py-2 rounded-xl font-medium text-sm whitespace-nowrap data-[state=active]:bg-white data-[state=active]:text-character-blue data-[state=active]:shadow-sm data-[state=inactive]:text-white/90 hover:text-white transition-all focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-character-blue"
             >
               {tab.charAt(0).toUpperCase() + tab.slice(1)}
             </TabsTrigger>

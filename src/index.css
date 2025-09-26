@@ -43,35 +43,41 @@ All colors MUST be HSL and optimized for character-based interactions.
 
     --radius: 1.5rem; /* More rounded for playful feel */
 
-    /* Character Theme Colors - Bright & Playful */
-    --character-yellow: 48 100% 67%; /* Cheerful yellow like happy face */
-    --character-orange: 25 95% 53%; /* Excited orange */
-    --character-blue: 216 98% 52%; /* Calm blue like sleepy face */
-    --character-pink: 340 82% 62%; /* Surprised pink */
-    --character-green: 142 69% 58%; /* Playful green like wink face */
-    --character-purple: 258 90% 68%; /* Magic purple like flower */
-    --character-lime: 84 81% 44%; /* Lucky green like clover */
+    /* Character Theme Colors - Accessible & Color-blind Friendly */
+    --character-blue: 214 95% 36%; /* Darker blue for better contrast */
+    --character-green: 142 76% 36%; /* Darker green for better contrast */
+    --character-orange: 25 95% 47%; /* Slightly darker orange */
+    --character-purple: 258 85% 45%; /* Darker purple for contrast */
+    --character-pink: 340 75% 45%; /* Darker pink for contrast */
+    --character-yellow: 48 96% 53%; /* Darker yellow for contrast */
+    --character-lime: 84 69% 35%; /* Much darker lime for readability */
     
-    /* Character background variations - very light tints */
-    --bg-yellow: 48 100% 95%; /* Very light yellow */
-    --bg-orange: 25 95% 95%; /* Very light orange */
-    --bg-blue: 216 98% 97%; /* Very light blue */
-    --bg-pink: 340 82% 97%; /* Very light pink */
-    --bg-green: 142 69% 95%; /* Very light green */
-    --bg-purple: 258 90% 97%; /* Very light purple */
-    --bg-lime: 84 81% 95%; /* Very light lime */
+    /* High contrast background variations - much lighter */
+    --bg-blue: 214 95% 97%; /* Very light blue background */
+    --bg-green: 142 76% 97%; /* Very light green background */
+    --bg-orange: 25 95% 97%; /* Very light orange background */
+    --bg-purple: 258 85% 98%; /* Very light purple background */
+    --bg-pink: 340 75% 98%; /* Very light pink background */
+    --bg-yellow: 48 96% 96%; /* Very light yellow background */
+    --bg-lime: 84 69% 97%; /* Very light lime background */
     
-    /* Playful character gradients */
-    --gradient-cheerful: linear-gradient(135deg, hsl(48, 100%, 67%), hsl(25, 95%, 53%));
-    --gradient-calm: linear-gradient(135deg, hsl(216, 98%, 52%), hsl(250, 65%, 75%));
-    --gradient-magical: linear-gradient(135deg, hsl(340, 82%, 62%), hsl(258, 90%, 68%));
-    --gradient-nature: linear-gradient(135deg, hsl(142, 69%, 58%), hsl(84, 81%, 44%));
+    /* Accessible semantic colors */
+    --success: 142 76% 36%; /* Dark green for success states */
+    --warning: 38 92% 50%; /* Accessible orange for warnings */
+    --error: 0 84% 60%; /* Clear red for errors */
+    --info: 214 95% 36%; /* Blue for informational states */
     
-    /* Soft character shadows */
-    --shadow-cheerful: 0 8px 32px -8px hsl(48, 100%, 67%, 0.25);
-    --shadow-calm: 0 8px 32px -8px hsl(216, 98%, 52%, 0.2);
-    --shadow-magical: 0 8px 32px -8px hsl(340, 82%, 62%, 0.25);
-    --shadow-soft: 0 4px 20px -2px hsl(210, 20%, 70%, 0.15);
+    /* Accessible gradients with better contrast */
+    --gradient-cheerful: linear-gradient(135deg, hsl(214, 95%, 36%), hsl(214, 95%, 42%));
+    --gradient-calm: linear-gradient(135deg, hsl(214, 95%, 36%), hsl(258, 85%, 45%));
+    --gradient-magical: linear-gradient(135deg, hsl(340, 75%, 45%), hsl(258, 85%, 45%));
+    --gradient-nature: linear-gradient(135deg, hsl(142, 76%, 36%), hsl(84, 69%, 35%));
+    
+    /* Accessible shadows */
+    --shadow-cheerful: 0 8px 32px -8px hsl(214, 95%, 36%, 0.15);
+    --shadow-calm: 0 8px 32px -8px hsl(214, 95%, 36%, 0.12);
+    --shadow-magical: 0 8px 32px -8px hsl(340, 75%, 45%, 0.15);
+    --shadow-soft: 0 4px 20px -2px hsl(210, 20%, 70%, 0.08);
     
     /* Playful transitions */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -136,40 +142,39 @@ All colors MUST be HSL and optimized for character-based interactions.
 }
 
 @layer components {
-  /* Playful character-themed components */
+  /* Accessible character-themed components */
   .btn-cheerful {
-    @apply bg-gradient-cheerful text-white shadow-cheerful hover:shadow-lg rounded-2xl px-6 py-3;
-    @apply transition-all duration-300 hover:scale-105 hover:rotate-1;
+    @apply bg-character-blue text-white shadow-cheerful hover:shadow-lg rounded-2xl px-6 py-3;
+    @apply transition-all duration-300 hover:scale-105 hover:brightness-110;
+    @apply focus:ring-2 focus:ring-character-blue focus:ring-offset-2;
   }
   
   .btn-magical {
-    @apply bg-gradient-magical text-white shadow-magical rounded-2xl px-6 py-3;
-    @apply transition-all duration-300 hover:scale-105 hover:-rotate-1;
+    @apply bg-character-purple text-white shadow-magical rounded-2xl px-6 py-3;
+    @apply transition-all duration-300 hover:scale-105 hover:brightness-110;
+    @apply focus:ring-2 focus:ring-character-purple focus:ring-offset-2;
   }
   
   .btn-calm {
-    @apply bg-gradient-calm text-white shadow-calm rounded-2xl px-6 py-3;
-    @apply transition-all duration-300 hover:scale-105;
+    @apply bg-character-green text-white shadow-calm rounded-2xl px-6 py-3;
+    @apply transition-all duration-300 hover:scale-105 hover:brightness-110;
+    @apply focus:ring-2 focus:ring-character-green focus:ring-offset-2;
   }
   
   .card-character {
-    @apply bg-card/80 backdrop-blur-sm border-2 border-transparent rounded-3xl shadow-soft p-6;
-    @apply transition-all duration-300 hover:shadow-magical hover:border-character-pink/20 hover:scale-105;
+    @apply bg-card/95 backdrop-blur-sm border border-border rounded-3xl shadow-soft p-6;
+    @apply transition-all duration-300 hover:shadow-magical hover:border-character-blue/30;
   }
   
   .speech-bubble {
-    @apply bg-bg-yellow border-2 border-character-yellow rounded-2xl px-4 py-3;
+    @apply bg-bg-yellow border border-character-yellow/50 rounded-2xl px-4 py-3;
     @apply relative font-medium text-foreground shadow-soft;
   }
   
   .speech-bubble::after {
-    @apply absolute -bottom-2 left-6 w-4 h-4 bg-bg-yellow border-r-2 border-b-2 border-character-yellow;
+    @apply absolute -bottom-2 left-6 w-4 h-4 bg-bg-yellow border-r border-b border-character-yellow/50;
     content: '';
     transform: rotate(45deg);
-  }
-  
-  .character-float {
-    @apply animate-bounce-gentle;
   }
 }
 
