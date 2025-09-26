@@ -95,7 +95,9 @@ const PopularBooks = ({ onBookSelect }: PopularBooksProps) => {
                     <img 
                       src={book.coverImage} 
                       alt={book.title}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover rounded-lg"
+                      loading="lazy"
+                      style={{ imageRendering: 'crisp-edges' }}
                     />
                   ) : (
                     <BookOpen className="w-12 h-12 text-learning-blue/50" />

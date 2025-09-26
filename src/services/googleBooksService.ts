@@ -91,7 +91,7 @@ class GoogleBooksService {
       title: volumeInfo.title || 'Unknown Title',
       author: volumeInfo.authors?.join(', ') || 'Unknown Author',
       summary: this.cleanDescription(volumeInfo.description) || 'No description available.',
-      coverImage: volumeInfo.imageLinks?.thumbnail || volumeInfo.imageLinks?.smallThumbnail,
+      coverImage: this.getHighResolutionCoverImage(volumeInfo.imageLinks),
       pageCount: volumeInfo.pageCount,
       publishedDate: volumeInfo.publishedDate,
       categories: volumeInfo.categories,
@@ -101,6 +101,24 @@ class GoogleBooksService {
       predictions,
       comprehensionSkill: this.getComprehensionSkill(volumeInfo.categories)
     };
+  }
+
+  private getHighResolutionCoverImage(imageLinks?: { thumbnail?: string; smallThumbnail?: string }): string | undefined {
+    if (!imageLinks?.thumbnail && !imageLinks?.smallThumbnail) {
+      return undefined;
+    }
+    
+    // Use thumbnail URL and modify it for higher resolution
+    const originalUrl = imageLinks.thumbnail || imageLinks.smallThumbnail;
+    if (!originalUrl) return undefined;
+    
+    // Replace zoom=1 with zoom=2 for higher resolution, and add edge=curl for better quality
+    const highResUrl = originalUrl
+      .replace('zoom=1', 'zoom=2')
+      .replace('zoom=5', 'zoom=2') // In case smallThumbnail is used
+      .replace('&source=gbs_api', '&edge=curl&source=gbs_api');
+    
+    return highResUrl;
   }
 
   private cleanDescription(description?: string): string {

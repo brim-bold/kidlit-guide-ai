@@ -32,7 +32,9 @@ const BookCard = ({ bookData }: BookCardProps) => {
               <img 
                 src={bookData.coverImage} 
                 alt={`${bookData.title} cover`}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover rounded-lg"
+                loading="lazy"
+                style={{ imageRendering: 'crisp-edges' }}
               />
             ) : (
               <BookOpen className="w-16 h-16 text-primary/50" />
