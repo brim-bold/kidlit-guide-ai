@@ -10,7 +10,9 @@ import PredictionSection from '@/components/PredictionSection';
 import BookTabs from '@/components/BookTabs';
 import BannedBookWarning from '@/components/BannedBookWarning';
 import GamificationBanner from '@/components/GamificationBanner';
+import PopularBooks from '@/components/PopularBooks';
 import { fallbackDatabase } from '@/data/fallbackDatabase';
+import { googleBooksService, GoogleBook } from '@/services/googleBooksService';
 import { useToast } from '@/hooks/use-toast';
 import { useAuth } from '@/hooks/useAuth';
 import { useGameification } from '@/hooks/useGameification';
@@ -21,7 +23,7 @@ const Index = () => {
   const [showLoading, setShowLoading] = useState(true);
   const [bookTitle, setBookTitle] = useState('');
   const [bookAuthor, setBookAuthor] = useState('');
-  const [bookData, setBookData] = useState<any>(null);
+  const [bookData, setBookData] = useState<GoogleBook | any>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [predictions, setPredictions] = useState<{ [key: number]: string }>({});
@@ -61,6 +63,22 @@ const Index = () => {
     setShowStrategy(true);
 
     try {
+      // First try Google Books API
+      const searchResults = await googleBooksService.searchBooks(bookTitle + (bookAuthor ? ` ${bookAuthor}` : ''));
+      
+      if (searchResults && searchResults.length > 0) {
+        // Use the first result from Google Books
+        const selectedBook = searchResults[0];
+        setBookData(selectedBook);
+        
+        toast({
+          title: "Book Found!",
+          description: `Found "${selectedBook.title}" by ${selectedBook.author}`,
+        });
+        return;
+      }
+
+      // Fallback to local database if no results from Google Books
       const searchKey = bookTitle.toLowerCase().replace(/[^a-z0-9]/g, '');
       const fallbackKeys = Object.keys(fallbackDatabase);
       const fallbackMatch = fallbackKeys.find(key => 
@@ -74,20 +92,27 @@ const Index = () => {
         if (matchedBook.bannedBook) {
           setShowBannedWarning(true);
         }
-        setLoading(false);
+        
         toast({
           title: "Book Found!",
-          description: `Found "${matchedBook.title}" with comprehensive reading materials.`,
+          description: `Found "${matchedBook.title}" in our curated collection!`,
         });
         return;
       }
 
-      // If not found in fallback, show error
-      setError(`We couldn't find "${bookTitle}"${bookAuthor ? ` by ${bookAuthor}` : ''}.`);
-      setLoading(false);
+      // If not found anywhere, show error
+      setError(`We couldn't find "${bookTitle}"${bookAuthor ? ` by ${bookAuthor}` : ''}. Try popular titles like "Charlotte's Web", "Wonder", or "The Giver".`);
+      
     } catch (err) {
       console.error('Search error:', err);
-      setError('Oops! Something went wrong with the search. Please try again!');
+      setError('Failed to search for books. Please check your internet connection and try again.');
+      
+      toast({
+        title: "Search Error",
+        description: "Unable to search for books. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
       setLoading(false);
     }
   };
@@ -104,6 +129,12 @@ const Index = () => {
         variant: "destructive",
       });
     }, 2000);
+  };
+
+  const handleBookSelect = (title: string, author: string) => {
+    setBookTitle(title);
+    setBookAuthor(author);
+    searchBook();
   };
 
   const handlePredictionChange = (index: number, value: string) => {
@@ -202,6 +233,9 @@ const Index = () => {
 
           {/* Show gamification banner for non-authenticated users */}
           {!user && <GamificationBanner />}
+
+          {/* Show popular books when no book is selected */}
+          {!bookData && <PopularBooks onBookSelect={handleBookSelect} />}
 
           <BookSearch
             bookTitle={bookTitle}
