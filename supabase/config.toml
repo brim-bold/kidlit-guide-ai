@@ -1,1 +1,7 @@
 project_id = "kqxxgrovwklafyxafpoy"
+
+[functions.generate-book-ai]
+verify_jwt = false
+
+[functions.text-to-speech]  
+verify_jwt = false

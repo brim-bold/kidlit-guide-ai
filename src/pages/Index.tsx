@@ -13,6 +13,7 @@ import GamificationBanner from '@/components/GamificationBanner';
 import PopularBooks from '@/components/PopularBooks';
 import { fallbackDatabase } from '@/data/fallbackDatabase';
 import { googleBooksService, GoogleBook } from '@/services/googleBooksService';
+import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import { useAuth } from '@/hooks/useAuth';
 import { useGameification } from '@/hooks/useGameification';
@@ -120,15 +121,41 @@ const Index = () => {
   const generateBookWithAI = async () => {
     setIsGeneratingBook(true);
     
-    // For demo purposes, we'll show an error since we don't have the API integration
-    setTimeout(() => {
-      setIsGeneratingBook(false);
+    try {
+      const prompt = bookTitle || "A magical adventure for young readers";
+      
+      const { data, error } = await supabase.functions.invoke('generate-book-ai', {
+        body: { 
+          prompt: prompt,
+          ageRange: "8-12",
+          genre: "adventure"
+        }
+      });
+
+      if (error) {
+        throw new Error(error.message || 'Failed to generate book');
+      }
+
+      const generatedBook = data.book;
+      setBookData(generatedBook);
+      setBookTitle(generatedBook.title);
+      setBookAuthor(generatedBook.author);
+      
       toast({
-        title: "AI Search Not Available",
-        description: "AI book generation would require API integration. Try selecting from popular books!",
+        title: "🤖 AI Book Generated!",
+        description: `Created "${generatedBook.title}" with full educational content!`,
+      });
+
+    } catch (error) {
+      console.error('AI Generation Error:', error);
+      toast({
+        title: "AI Generation Failed",
+        description: error instanceof Error ? error.message : "Please try again with a different prompt.",
         variant: "destructive",
       });
-    }, 2000);
+    } finally {
+      setIsGeneratingBook(false);
+    }
   };
 
   const handleBookSelect = (title: string, author: string) => {

@@ -5,6 +5,7 @@ import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 import { Icon } from '@/components/icons/Icon';
 import PointsButton from '@/components/PointsButton';
+import TextToSpeechButton from '@/components/TextToSpeechButton';
 
 interface BookData {
   title: string;
@@ -38,18 +39,58 @@ const BookTabs = ({ bookData, userPredictions, isAuthenticated = false }: BookTa
 
       <div className="bg-card rounded-xl shadow-md p-6 md:p-8 border border-border">
         <TabsContent value="overview" className="space-y-4">
-          <h3 className="text-xl md:text-3xl font-bold text-foreground mb-4">Summary</h3>
-          <p className="text-card-foreground leading-relaxed text-base md:text-lg">{bookData.summary}</p>
+          <div className="bg-card rounded-lg p-4 md:p-6 border border-border shadow-sm">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-xl md:text-2xl font-bold text-foreground">Book Summary</h3>
+              <TextToSpeechButton 
+                text={bookData.summary} 
+                voice="nova"
+                className="border-learning-blue text-learning-blue hover:bg-learning-blue hover:text-white"
+              />
+            </div>
+            <p className="text-card-foreground leading-relaxed text-sm md:text-base">
+              {bookData.summary}
+            </p>
+          </div>
         </TabsContent>
 
         <TabsContent value="vocabulary" className="space-y-4">
-          <h3 className="text-xl md:text-3xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <Icon name="book" size={24} />
-            Key Vocabulary
-          </h3>
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-xl md:text-3xl font-bold text-foreground flex items-center gap-2">
+              <Icon name="book" size={24} />
+              Key Vocabulary
+            </h3>
+            <TextToSpeechButton 
+              text={bookData.vocabulary?.join(', ') || ''} 
+              voice="echo"
+              className="border-learning-green text-learning-green hover:bg-learning-green hover:text-white"
+            >
+              Read All Words
+            </TextToSpeechButton>
+          </div>
           {bookData.vocabulary?.map((word, idx) => (
-            <div key={idx} className="bg-bg-blue rounded-lg p-4 md:p-5 border border-learning-blue/30 shadow-sm">
+            <div key={idx} className="bg-bg-blue rounded-lg p-4 md:p-5 border border-learning-blue/30 shadow-sm flex items-center justify-between">
               <p className="text-lg md:text-xl font-bold text-learning-blue">{word}</p>
+              <div className="flex items-center gap-2">
+                <TextToSpeechButton 
+                  text={word} 
+                  voice="echo"
+                  className="border-learning-green text-learning-green hover:bg-learning-green hover:text-white text-xs"
+                />
+                {isAuthenticated ? (
+                  <PointsButton 
+                    activityType="vocabulary" 
+                    bookTitle={bookData.title}
+                    className="bg-learning-green hover:bg-learning-green/90 text-white text-sm"
+                  >
+                    Learn Word
+                  </PointsButton>
+                ) : (
+                  <Badge variant="outline" className="text-learning-green border-learning-green">
+                    Vocabulary Word
+                  </Badge>
+                )}
+              </div>
             </div>
           ))}
         </TabsContent>
