@@ -195,6 +195,12 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      get_accessible_profile_user_ids: {
+        Args: { _user_id: string }
+        Returns: {
+          user_id: string
+        }[]
+      }
       get_user_children: {
         Args: { _parent_id: string }
         Returns: {

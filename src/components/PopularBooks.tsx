@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { googleBooksService, GoogleBook } from '@/services/googleBooksService';
+import { fallbackDatabase } from '@/data/fallbackDatabase';
 import { BookOpen, Star } from 'lucide-react';
 
 interface PopularBooksProps {
@@ -27,12 +28,32 @@ const PopularBooks = ({ onBookSelect }: PopularBooksProps) => {
       try {
         const allBooks: GoogleBook[] = [];
         
-        // Fetch a few popular books
-        for (const search of popularSearches.slice(0, 3)) {
-          const results = await googleBooksService.searchBooks(search, 1);
-          if (results.length > 0) {
-            allBooks.push(results[0]);
+        // Try to fetch from Google Books API first
+        try {
+          for (const search of popularSearches.slice(0, 3)) {
+            const results = await googleBooksService.searchBooks(search, 1);
+            if (results.length > 0) {
+              allBooks.push(results[0]);
+            }
           }
+        } catch (apiError) {
+          console.warn('Google Books API unavailable, using fallback books');
+          
+          // If API fails, use fallback books
+          const fallbackBooks = Object.values(fallbackDatabase).slice(0, 3).map(book => ({
+            id: book.id,
+            title: book.title,
+            author: book.author,
+            summary: book.summary,
+            vocabulary: book.vocabulary,
+            questions: book.questions,
+            activities: book.activities,
+            predictions: book.predictions,
+            comprehensionSkill: book.comprehensionSkill,
+            categories: ['Fiction']
+          }));
+          
+          allBooks.push(...fallbackBooks);
         }
         
         setBooks(allBooks);
