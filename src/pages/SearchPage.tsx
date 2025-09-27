@@ -36,22 +36,7 @@ const SearchPage = () => {
     setError('');
 
     try {
-      // First try Google Books API
-      const searchResults = await googleBooksService.searchBooks(bookTitle + (bookAuthor ? ` ${bookAuthor}` : ''));
-      
-      if (searchResults && searchResults.length > 0) {
-        // Navigate to results page with the book data
-        const selectedBook = searchResults[0];
-        navigate('/results', { 
-          state: { 
-            bookData: selectedBook,
-            source: 'google'
-          } 
-        });
-        return;
-      }
-
-      // Fallback to local database if no results from Google Books
+      // First check fallback database for better reliability
       const searchKey = bookTitle.toLowerCase().replace(/[^a-z0-9]/g, '');
       const fallbackKeys = Object.keys(fallbackDatabase);
       const fallbackMatch = fallbackKeys.find(key => 
@@ -71,27 +56,36 @@ const SearchPage = () => {
         return;
       }
 
-      // If not found anywhere, show error
-      setError(`We couldn't find "${bookTitle}"${bookAuthor ? ` by ${bookAuthor}` : ''}. Try popular titles like "Charlotte's Web", "Wonder", or "The Giver".`);
+      // Try Google Books API as fallback (since it has quota issues)
+      try {
+        const searchResults = await googleBooksService.searchBooks(bookTitle + (bookAuthor ? ` ${bookAuthor}` : ''));
+        
+        if (searchResults && searchResults.length > 0) {
+          const selectedBook = searchResults[0];
+          navigate('/results', { 
+            state: { 
+              bookData: selectedBook,
+              source: 'google'
+            } 
+          });
+          return;
+        }
+      } catch (apiError) {
+        console.warn('Google Books API unavailable, already checked fallback');
+      }
+
+      // If not found anywhere, show error with suggestions
+      setError(`We couldn't find "${bookTitle}"${bookAuthor ? ` by ${bookAuthor}` : ''}. Try popular titles like "Charlotte's Web", "Wonder", "The BFG", "Harry Potter", or "Holes".`);
       
     } catch (err) {
       console.error('Search error:', err);
+      setError('Failed to search for books. Please try again or use AI book generation.');
       
-      if (err instanceof Error && err.message.includes('quota')) {
-        setError('Book search is temporarily unavailable due to high demand. Try using AI book generation instead!');
-        toast({
-          title: "Service Temporarily Unavailable",
-          description: "Try generating a book with AI instead!",
-          variant: "destructive",
-        });
-      } else {
-        setError('Failed to search for books. Please check your internet connection and try again.');
-        toast({
-          title: "Search Error",
-          description: "Unable to search for books. Please try again.",
-          variant: "destructive",
-        });
-      }
+      toast({
+        title: "Search Error",
+        description: "Try using AI book generation instead!",
+        variant: "destructive",
+      });
     } finally {
       setLoading(false);
     }
