@@ -42,6 +42,10 @@ class GoogleBooksService {
       const response = await fetch(searchUrl);
       
       if (!response.ok) {
+        if (response.status === 429) {
+          console.warn('Google Books API quota exceeded, service temporarily unavailable');
+          throw new Error('Book search temporarily unavailable due to high demand. Please try again later or use AI book generation.');
+        }
         throw new Error(`Google Books API error: ${response.status}`);
       }
 
@@ -54,6 +58,9 @@ class GoogleBooksService {
       return data.items.map(item => this.transformGoogleBookData(item));
     } catch (error) {
       console.error('Error searching Google Books:', error);
+      if (error instanceof Error && error.message.includes('quota')) {
+        throw error; // Re-throw quota-specific errors with their message
+      }
       throw new Error('Failed to search books. Please try again.');
     }
   }

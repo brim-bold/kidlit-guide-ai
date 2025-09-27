@@ -76,13 +76,22 @@ const SearchPage = () => {
       
     } catch (err) {
       console.error('Search error:', err);
-      setError('Failed to search for books. Please check your internet connection and try again.');
       
-      toast({
-        title: "Search Error",
-        description: "Unable to search for books. Please try again.",
-        variant: "destructive",
-      });
+      if (err instanceof Error && err.message.includes('quota')) {
+        setError('Book search is temporarily unavailable due to high demand. Try using AI book generation instead!');
+        toast({
+          title: "Service Temporarily Unavailable",
+          description: "Try generating a book with AI instead!",
+          variant: "destructive",
+        });
+      } else {
+        setError('Failed to search for books. Please check your internet connection and try again.');
+        toast({
+          title: "Search Error",
+          description: "Unable to search for books. Please try again.",
+          variant: "destructive",
+        });
+      }
     } finally {
       setLoading(false);
     }
