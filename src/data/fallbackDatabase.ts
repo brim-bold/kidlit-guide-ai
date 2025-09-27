@@ -1,9 +1,14 @@
+import charlottesWebCover from '@/assets/book-covers/charlottes-web.jpg';
+import wonderCover from '@/assets/book-covers/wonder.jpg';
+import bfgCover from '@/assets/book-covers/bfg.jpg';
+
 export const fallbackDatabase = {
   'bfg': {
     id: 'bfg-fallback',
     title: 'The BFG',
     author: 'Roald Dahl',
     summary: 'Sophie meets the Big Friendly Giant who, unlike other giants, refuses to eat children and instead catches dreams. Together they embark on an adventure to stop the mean giants from eating human beans.',
+    coverImage: bfgCover,
     arLevel: '4.8',
     gradeLevel: '3-7',
     pageCount: 208,
@@ -32,6 +37,7 @@ export const fallbackDatabase = {
     title: 'Charlotte\'s Web',
     author: 'E.B. White',
     summary: 'Wilbur the pig is saved from being slaughtered when a clever spider named Charlotte weaves words into her web, declaring Wilbur to be "Some Pig" and other remarkable things.',
+    coverImage: charlottesWebCover,
     arLevel: '4.4',
     gradeLevel: '3-5',
     pageCount: 192,
@@ -60,6 +66,7 @@ export const fallbackDatabase = {
     title: 'Wonder',
     author: 'R.J. Palacio',
     summary: 'August Pullman was born with facial differences that have prevented him from going to a mainstream school. Now he\'s starting 5th grade at Beecher Prep, and he just wants to be treated like an ordinary kid.',
+    coverImage: wonderCover,
     arLevel: '4.8',
     gradeLevel: '3-7',
     pageCount: 310,
@@ -88,6 +95,7 @@ export const fallbackDatabase = {
     title: 'Harry Potter and the Sorcerer\'s Stone',
     author: 'J.K. Rowling',
     summary: 'Harry Potter discovers he\'s a wizard on his 11th birthday and attends Hogwarts School of Witchcraft and Wizardry, where he learns about his past and confronts the dark wizard who killed his parents.',
+    coverImage: undefined, // Will use placeholder
     arLevel: '5.5',
     gradeLevel: '4-6',
     pageCount: 309,
@@ -116,6 +124,7 @@ export const fallbackDatabase = {
     title: 'Holes',
     author: 'Louis Sachar',
     summary: 'Stanley Yelnats is sent to Camp Green Lake, a detention center where boys dig holes all day. As Stanley digs, he uncovers the truth about the camp and his family\'s curse.',
+    coverImage: undefined, // Will use placeholder
     arLevel: '4.6',
     gradeLevel: '5-8',
     pageCount: 233,

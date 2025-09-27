@@ -26,39 +26,24 @@ const PopularBooks = ({ onBookSelect }: PopularBooksProps) => {
   useEffect(() => {
     const fetchPopularBooks = async () => {
       try {
-        const allBooks: GoogleBook[] = [];
+        // Use fallback books directly to avoid API quota issues
+        const fallbackBooks = Object.values(fallbackDatabase).slice(0, 3).map(book => ({
+          id: book.id,
+          title: book.title,
+          author: book.author,
+          summary: book.summary,
+          coverImage: (book as any).coverImage, // Handle optional coverImage
+          vocabulary: book.vocabulary,
+          questions: book.questions,
+          activities: book.activities,
+          predictions: book.predictions,
+          comprehensionSkill: book.comprehensionSkill,
+          categories: ['Fiction']
+        }));
         
-        // Try to fetch from Google Books API first
-        try {
-          for (const search of popularSearches.slice(0, 3)) {
-            const results = await googleBooksService.searchBooks(search, 1);
-            if (results.length > 0) {
-              allBooks.push(results[0]);
-            }
-          }
-        } catch (apiError) {
-          console.warn('Google Books API unavailable, using fallback books');
-          
-          // If API fails, use fallback books
-          const fallbackBooks = Object.values(fallbackDatabase).slice(0, 3).map(book => ({
-            id: book.id,
-            title: book.title,
-            author: book.author,
-            summary: book.summary,
-            vocabulary: book.vocabulary,
-            questions: book.questions,
-            activities: book.activities,
-            predictions: book.predictions,
-            comprehensionSkill: book.comprehensionSkill,
-            categories: ['Fiction']
-          }));
-          
-          allBooks.push(...fallbackBooks);
-        }
-        
-        setBooks(allBooks);
+        setBooks(fallbackBooks);
       } catch (error) {
-        console.error('Error fetching popular books:', error);
+        console.error('Error loading popular books:', error);
       } finally {
         setLoading(false);
       }
