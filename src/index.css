@@ -10,10 +10,10 @@ All colors MUST be HSL and optimized for character-based interactions.
 @layer base {
   :root {
     /* Playful Character Color Palette - Light Mode */
-    --background: 0 0% 99%; /* Clean white background */
+        --background: 30 55% 97%; /* Warm cream background */
     --foreground: 0 0% 8%; /* Dark text for accessibility */
 
-    --card: 0 0% 97%; /* Soft white cards with subtle warmth */
+        --card: 30 40% 99%; /* Warm white cards */
     --card-foreground: 0 0% 8%; /* Dark text on cards */
 
     --popover: 0 0% 100%; /* Pure white for popovers */
